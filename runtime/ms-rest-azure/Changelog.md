@@ -1,8 +1,24 @@
+### 2.5.9 (09/26/2018)
+- Add `request` as a dependency since `MSIVmTokenCredentials` and `MSIAppServiceTokenCredentials` use it directly.
+- Update `ms-rest` version dependency to 2.3.7
+
+### 2.5.7 (06/12/2018)
+- Added `validateAuthority` to AzureEnvironment type definitions
+
+### 2.5.6 (06/12/2018)
+- Updated vulnerable dependencies
+
+### 2.5.5 (03/12/2018)
+- Added an `interface TokenResponse` that extends `adal.TokenResponse`. This interface would be the return type of `getToken()` method on the credential classes.
+- Added `getToken()` method on `DeviceTokenCredentials` to make it consistent with other credential classes.
+- Improved the parsing logic for `MSITokenCredentials` there by standardizing the property names of the `TokenResponse` that is received from MSI or adal (sp, interactive, user) authentication.
+- Ensured tokenAudience option is used when provided, while acquiring the userCode and token with deviceCode in interactive login.
+
 ### 2.5.4 (02/22/2018)
 - Moved `RpRegistrationFilter` from `ms-rest-azure` to `ms-rest`. This fixes #2367.
 
 ### 2.5.3 (01/31/2018)
-- Opened up the optional parameter `tokenAudience` for several login methods to accept `'graph'`, `'batch'` or any other resource uri like `'https://vault.azure.com'`.
+- Opened up the optional parameter `tokenAudience` for several login methods to accept `'graph'`, `'batch'` or any other resource uri like `'https://vault.azure.net/'`.
 - Added `batchResourceId` in all the supported AzureEnvironments.
 
 ### 2.5.2 (01/31/2018)
@@ -15,7 +31,7 @@
 - Convert underscore_seperated properties in MSI tokenResponses to CamelCase.
 
 ### 2.4.5 (11/17/2017)
-- Added `innererror` field to `CloudError` class. #2328 
+- Added `innererror` field to `CloudError` class. #2328
 
 ### 2.4.4 (11/07/2017)
 - Fixed a bug in the request url creation for AppService MSI.
@@ -30,7 +46,7 @@
  - Added support for `MSIAppServiceTokenCredentials` and `loginWithAppServiceMSI()` #2292.
 
 ### 2.4.1 (10/11/2017)
-- Restricted dependency on "moment" from "^2.18.1" to "~2.18.1" due to bugs in 2.19.0 
+- Restricted dependency on "moment" from "^2.18.1" to "~2.18.1" due to bugs in 2.19.0
 
 ### 2.4.0 (10/03/2017)
 - Bug fix: Renamed `loginwithAuthFile` to `loginWithAuthFile`.
@@ -50,7 +66,7 @@
 
 ### 2.3.1 (09/11/2017)
 - Fixed endpoint information for Azure environments
-- Added typings for authfile and msi auth 
+- Added typings for authfile and msi auth
 
 ### 2.3.0 (08/25/2017)
 - Added support to authenticate using service principal from auth file. #2225

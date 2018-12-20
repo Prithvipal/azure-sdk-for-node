@@ -14,6 +14,548 @@ import * as models from '../models';
 
 /**
  * @class
+ * ProtectionIntentOperations
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface ProtectionIntentOperations {
+
+
+    /**
+     * @summary It will validate followings
+     * 1. Vault capacity
+     * 2. VM is already protected
+     * 3. Any VM related configuration passed in properties.
+     *
+     * @param {string} azureRegion Azure region to hit Api
+     *
+     * @param {object} parameters Enable backup validation request on Virtual
+     * Machine
+     *
+     * @param {string} [parameters.resourceType] ProtectedItem Type- VM,
+     * SqlDataBase, AzureFileShare etc. Possible values include: 'Invalid', 'VM',
+     * 'FileFolder', 'AzureSqlDb', 'SQLDB', 'Exchange', 'Sharepoint', 'VMwareVM',
+     * 'SystemState', 'Client', 'GenericDataSource', 'SQLDataBase',
+     * 'AzureFileShare', 'SAPHanaDatabase'
+     *
+     * @param {string} [parameters.resourceId] ARM Virtual Machine Id
+     *
+     * @param {string} [parameters.properties] Configuration of VM if any needs to
+     * be validated like OS type etc
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<PreValidateEnableBackupResponse>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    validateWithHttpOperationResponse(azureRegion: string, parameters: models.PreValidateEnableBackupRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.PreValidateEnableBackupResponse>>;
+
+    /**
+     * @summary It will validate followings
+     * 1. Vault capacity
+     * 2. VM is already protected
+     * 3. Any VM related configuration passed in properties.
+     *
+     * @param {string} azureRegion Azure region to hit Api
+     *
+     * @param {object} parameters Enable backup validation request on Virtual
+     * Machine
+     *
+     * @param {string} [parameters.resourceType] ProtectedItem Type- VM,
+     * SqlDataBase, AzureFileShare etc. Possible values include: 'Invalid', 'VM',
+     * 'FileFolder', 'AzureSqlDb', 'SQLDB', 'Exchange', 'Sharepoint', 'VMwareVM',
+     * 'SystemState', 'Client', 'GenericDataSource', 'SQLDataBase',
+     * 'AzureFileShare', 'SAPHanaDatabase'
+     *
+     * @param {string} [parameters.resourceId] ARM Virtual Machine Id
+     *
+     * @param {string} [parameters.properties] Configuration of VM if any needs to
+     * be validated like OS type etc
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {PreValidateEnableBackupResponse} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {PreValidateEnableBackupResponse} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link PreValidateEnableBackupResponse} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    validate(azureRegion: string, parameters: models.PreValidateEnableBackupRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.PreValidateEnableBackupResponse>;
+    validate(azureRegion: string, parameters: models.PreValidateEnableBackupRequest, callback: ServiceCallback<models.PreValidateEnableBackupResponse>): void;
+    validate(azureRegion: string, parameters: models.PreValidateEnableBackupRequest, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.PreValidateEnableBackupResponse>): void;
+
+
+    /**
+     * Provides the details of the protection intent up item. This is an
+     * asynchronous operation. To know the status of the operation,
+     * call the GetItemOperationResult API.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the backed up item.
+     *
+     * @param {string} intentObjectName Backed up item name whose details are to be
+     * fetched.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectionIntentResource>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectionIntentResource>>;
+
+    /**
+     * Provides the details of the protection intent up item. This is an
+     * asynchronous operation. To know the status of the operation,
+     * call the GetItemOperationResult API.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the backed up item.
+     *
+     * @param {string} intentObjectName Backed up item name whose details are to be
+     * fetched.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectionIntentResource} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectionIntentResource} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectionIntentResource} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    get(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectionIntentResource>;
+    get(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, callback: ServiceCallback<models.ProtectionIntentResource>): void;
+    get(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectionIntentResource>): void;
+
+
+    /**
+     * Create Intent for Enabling backup of an item. This is a synchronous
+     * operation.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the backup item.
+     *
+     * @param {string} intentObjectName Intent object name.
+     *
+     * @param {object} parameters resource backed up item
+     *
+     * @param {object} [parameters.properties] ProtectionIntentResource properties
+     *
+     * @param {string} [parameters.properties.backupManagementType] Type of backup
+     * managemenent for the backed up item. Possible values include: 'Invalid',
+     * 'AzureIaasVM', 'MAB', 'DPM', 'AzureBackupServer', 'AzureSql',
+     * 'AzureStorage', 'AzureWorkload', 'DefaultBackup'
+     *
+     * @param {string} [parameters.properties.sourceResourceId] ARM ID of the
+     * resource to be backed up.
+     *
+     * @param {string} [parameters.properties.itemId] ID of the item which is
+     * getting protected, In case of Azure Vm , it is ProtectedItemId
+     *
+     * @param {string} [parameters.properties.policyId] ID of the backup policy
+     * with which this item is backed up.
+     *
+     * @param {string} [parameters.properties.protectionState] Backup state of this
+     * backup item. Possible values include: 'Invalid', 'NotProtected',
+     * 'Protecting', 'Protected', 'ProtectionFailed'
+     *
+     * @param {string} parameters.properties.protectionIntentItemType Polymorphic
+     * Discriminator
+     *
+     * @param {string} [parameters.location] Resource location.
+     *
+     * @param {object} [parameters.tags] Resource tags.
+     *
+     * @param {string} [parameters.eTag] Optional ETag.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectionIntentResource>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    createOrUpdateWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, parameters: models.ProtectionIntentResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectionIntentResource>>;
+
+    /**
+     * Create Intent for Enabling backup of an item. This is a synchronous
+     * operation.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the backup item.
+     *
+     * @param {string} intentObjectName Intent object name.
+     *
+     * @param {object} parameters resource backed up item
+     *
+     * @param {object} [parameters.properties] ProtectionIntentResource properties
+     *
+     * @param {string} [parameters.properties.backupManagementType] Type of backup
+     * managemenent for the backed up item. Possible values include: 'Invalid',
+     * 'AzureIaasVM', 'MAB', 'DPM', 'AzureBackupServer', 'AzureSql',
+     * 'AzureStorage', 'AzureWorkload', 'DefaultBackup'
+     *
+     * @param {string} [parameters.properties.sourceResourceId] ARM ID of the
+     * resource to be backed up.
+     *
+     * @param {string} [parameters.properties.itemId] ID of the item which is
+     * getting protected, In case of Azure Vm , it is ProtectedItemId
+     *
+     * @param {string} [parameters.properties.policyId] ID of the backup policy
+     * with which this item is backed up.
+     *
+     * @param {string} [parameters.properties.protectionState] Backup state of this
+     * backup item. Possible values include: 'Invalid', 'NotProtected',
+     * 'Protecting', 'Protected', 'ProtectionFailed'
+     *
+     * @param {string} parameters.properties.protectionIntentItemType Polymorphic
+     * Discriminator
+     *
+     * @param {string} [parameters.location] Resource location.
+     *
+     * @param {object} [parameters.tags] Resource tags.
+     *
+     * @param {string} [parameters.eTag] Optional ETag.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectionIntentResource} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectionIntentResource} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectionIntentResource} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    createOrUpdate(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, parameters: models.ProtectionIntentResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectionIntentResource>;
+    createOrUpdate(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, parameters: models.ProtectionIntentResource, callback: ServiceCallback<models.ProtectionIntentResource>): void;
+    createOrUpdate(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, parameters: models.ProtectionIntentResource, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectionIntentResource>): void;
+
+
+    /**
+     * Used to remove intent from an item
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the intent.
+     *
+     * @param {string} intentObjectName Intent to be deleted.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    deleteMethodWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * Used to remove intent from an item
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the intent.
+     *
+     * @param {string} intentObjectName Intent to be deleted.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    deleteMethod(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    deleteMethod(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, callback: ServiceCallback<void>): void;
+    deleteMethod(vaultName: string, resourceGroupName: string, fabricName: string, intentObjectName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+}
+
+/**
+ * @class
+ * BackupStatus
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface BackupStatus {
+
+
+    /**
+     * @summary Get the container backup status
+     *
+     * @param {string} azureRegion Azure region to hit Api
+     *
+     * @param {object} parameters Container Backup Status Request
+     *
+     * @param {string} [parameters.resourceType] Container Type - VM, SQLPaaS, DPM,
+     * AzureFileShare. Possible values include: 'Invalid', 'VM', 'FileFolder',
+     * 'AzureSqlDb', 'SQLDB', 'Exchange', 'Sharepoint', 'VMwareVM', 'SystemState',
+     * 'Client', 'GenericDataSource', 'SQLDataBase', 'AzureFileShare',
+     * 'SAPHanaDatabase'
+     *
+     * @param {string} [parameters.resourceId] Entire ARM resource id of the
+     * resource
+     *
+     * @param {string} [parameters.poLogicalName] Protectable Item Logical Name
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<BackupStatusResponse>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getWithHttpOperationResponse(azureRegion: string, parameters: models.BackupStatusRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.BackupStatusResponse>>;
+
+    /**
+     * @summary Get the container backup status
+     *
+     * @param {string} azureRegion Azure region to hit Api
+     *
+     * @param {object} parameters Container Backup Status Request
+     *
+     * @param {string} [parameters.resourceType] Container Type - VM, SQLPaaS, DPM,
+     * AzureFileShare. Possible values include: 'Invalid', 'VM', 'FileFolder',
+     * 'AzureSqlDb', 'SQLDB', 'Exchange', 'Sharepoint', 'VMwareVM', 'SystemState',
+     * 'Client', 'GenericDataSource', 'SQLDataBase', 'AzureFileShare',
+     * 'SAPHanaDatabase'
+     *
+     * @param {string} [parameters.resourceId] Entire ARM resource id of the
+     * resource
+     *
+     * @param {string} [parameters.poLogicalName] Protectable Item Logical Name
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {BackupStatusResponse} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {BackupStatusResponse} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link BackupStatusResponse} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    get(azureRegion: string, parameters: models.BackupStatusRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.BackupStatusResponse>;
+    get(azureRegion: string, parameters: models.BackupStatusRequest, callback: ServiceCallback<models.BackupStatusResponse>): void;
+    get(azureRegion: string, parameters: models.BackupStatusRequest, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.BackupStatusResponse>): void;
+}
+
+/**
+ * @class
+ * FeatureSupport
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface FeatureSupport {
+
+
+    /**
+     * @summary It will validate if given feature with resource properties is
+     * supported in service
+     *
+     * @param {string} azureRegion Azure region to hit Api
+     *
+     * @param {object} parameters Feature support request object
+     *
+     * @param {string} parameters.featureType Polymorphic Discriminator
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<AzureVMResourceFeatureSupportResponse>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    validateWithHttpOperationResponse(azureRegion: string, parameters: models.FeatureSupportRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.AzureVMResourceFeatureSupportResponse>>;
+
+    /**
+     * @summary It will validate if given feature with resource properties is
+     * supported in service
+     *
+     * @param {string} azureRegion Azure region to hit Api
+     *
+     * @param {object} parameters Feature support request object
+     *
+     * @param {string} parameters.featureType Polymorphic Discriminator
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {AzureVMResourceFeatureSupportResponse} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {AzureVMResourceFeatureSupportResponse} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link AzureVMResourceFeatureSupportResponse} for
+     *                      more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    validate(azureRegion: string, parameters: models.FeatureSupportRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.AzureVMResourceFeatureSupportResponse>;
+    validate(azureRegion: string, parameters: models.FeatureSupportRequest, callback: ServiceCallback<models.AzureVMResourceFeatureSupportResponse>): void;
+    validate(azureRegion: string, parameters: models.FeatureSupportRequest, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.AzureVMResourceFeatureSupportResponse>): void;
+}
+
+/**
+ * @class
  * BackupJobs
  * __NOTE__: An instance of this class is automatically created for an
  * instance of the RecoveryServicesBackupClient.
@@ -223,6 +765,737 @@ export interface JobDetails {
 
 /**
  * @class
+ * ExportJobsOperationResults
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface ExportJobsOperationResults {
+
+
+    /**
+     * Gets the operation result of operation triggered by Export Jobs API. If the
+     * operation is successful, then it also
+     * contains URL of a Blob and a SAS key to access the same. The blob contains
+     * exported jobs in JSON serialized format.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} operationId OperationID which represents the export job.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<OperationResultInfoBaseResource>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getWithHttpOperationResponse(vaultName: string, resourceGroupName: string, operationId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.OperationResultInfoBaseResource>>;
+
+    /**
+     * Gets the operation result of operation triggered by Export Jobs API. If the
+     * operation is successful, then it also
+     * contains URL of a Blob and a SAS key to access the same. The blob contains
+     * exported jobs in JSON serialized format.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} operationId OperationID which represents the export job.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {OperationResultInfoBaseResource} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {OperationResultInfoBaseResource} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link OperationResultInfoBaseResource} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    get(vaultName: string, resourceGroupName: string, operationId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.OperationResultInfoBaseResource>;
+    get(vaultName: string, resourceGroupName: string, operationId: string, callback: ServiceCallback<models.OperationResultInfoBaseResource>): void;
+    get(vaultName: string, resourceGroupName: string, operationId: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.OperationResultInfoBaseResource>): void;
+}
+
+/**
+ * @class
+ * Jobs
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface Jobs {
+
+
+    /**
+     * Triggers export of jobs specified by filters and returns an OperationID to
+     * track.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    exportMethodWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * Triggers export of jobs specified by filters and returns an OperationID to
+     * track.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    exportMethod(vaultName: string, resourceGroupName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    exportMethod(vaultName: string, resourceGroupName: string, callback: ServiceCallback<void>): void;
+    exportMethod(vaultName: string, resourceGroupName: string, options: { filter? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+}
+
+/**
+ * @class
+ * BackupPolicies
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface BackupPolicies {
+
+
+    /**
+     * Lists of backup policies associated with Recovery Services Vault. API
+     * provides pagination parameters to fetch
+     * scoped results.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectionPolicyResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectionPolicyResourceList>>;
+
+    /**
+     * Lists of backup policies associated with Recovery Services Vault. API
+     * provides pagination parameters to fetch
+     * scoped results.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectionPolicyResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectionPolicyResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectionPolicyResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    list(vaultName: string, resourceGroupName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectionPolicyResourceList>;
+    list(vaultName: string, resourceGroupName: string, callback: ServiceCallback<models.ProtectionPolicyResourceList>): void;
+    list(vaultName: string, resourceGroupName: string, options: { filter? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectionPolicyResourceList>): void;
+
+
+    /**
+     * Lists of backup policies associated with Recovery Services Vault. API
+     * provides pagination parameters to fetch
+     * scoped results.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectionPolicyResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listNextWithHttpOperationResponse(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectionPolicyResourceList>>;
+
+    /**
+     * Lists of backup policies associated with Recovery Services Vault. API
+     * provides pagination parameters to fetch
+     * scoped results.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectionPolicyResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectionPolicyResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectionPolicyResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listNext(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectionPolicyResourceList>;
+    listNext(nextPageLink: string, callback: ServiceCallback<models.ProtectionPolicyResourceList>): void;
+    listNext(nextPageLink: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectionPolicyResourceList>): void;
+}
+
+/**
+ * @class
+ * BackupProtectedItems
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface BackupProtectedItems {
+
+
+    /**
+     * Provides a pageable list of all items that are backed up within a vault.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {string} [options.skipToken] skipToken Filter.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectedItemResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectedItemResourceList>>;
+
+    /**
+     * Provides a pageable list of all items that are backed up within a vault.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {string} [options.skipToken] skipToken Filter.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectedItemResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectedItemResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectedItemResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    list(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectedItemResourceList>;
+    list(vaultName: string, resourceGroupName: string, callback: ServiceCallback<models.ProtectedItemResourceList>): void;
+    list(vaultName: string, resourceGroupName: string, options: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectedItemResourceList>): void;
+
+
+    /**
+     * Provides a pageable list of all items that are backed up within a vault.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectedItemResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listNextWithHttpOperationResponse(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectedItemResourceList>>;
+
+    /**
+     * Provides a pageable list of all items that are backed up within a vault.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectedItemResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectedItemResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectedItemResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listNext(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectedItemResourceList>;
+    listNext(nextPageLink: string, callback: ServiceCallback<models.ProtectedItemResourceList>): void;
+    listNext(nextPageLink: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectedItemResourceList>): void;
+}
+
+/**
+ * @class
+ * BackupProtectionIntent
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface BackupProtectionIntent {
+
+
+    /**
+     * Provides a pageable list of all intents that are present within a vault.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {string} [options.skipToken] skipToken Filter.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectionIntentResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectionIntentResourceList>>;
+
+    /**
+     * Provides a pageable list of all intents that are present within a vault.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {string} [options.skipToken] skipToken Filter.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectionIntentResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectionIntentResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectionIntentResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    list(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectionIntentResourceList>;
+    list(vaultName: string, resourceGroupName: string, callback: ServiceCallback<models.ProtectionIntentResourceList>): void;
+    list(vaultName: string, resourceGroupName: string, options: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectionIntentResourceList>): void;
+
+
+    /**
+     * Provides a pageable list of all intents that are present within a vault.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectionIntentResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listNextWithHttpOperationResponse(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectionIntentResourceList>>;
+
+    /**
+     * Provides a pageable list of all intents that are present within a vault.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectionIntentResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectionIntentResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectionIntentResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listNext(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectionIntentResourceList>;
+    listNext(nextPageLink: string, callback: ServiceCallback<models.ProtectionIntentResourceList>): void;
+    listNext(nextPageLink: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectionIntentResourceList>): void;
+}
+
+/**
+ * @class
+ * BackupUsageSummaries
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface BackupUsageSummaries {
+
+
+    /**
+     * Fetches the backup management usage summaries of the vault.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {string} [options.skipToken] skipToken Filter.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<BackupManagementUsageList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.BackupManagementUsageList>>;
+
+    /**
+     * Fetches the backup management usage summaries of the vault.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {string} [options.skipToken] skipToken Filter.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {BackupManagementUsageList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {BackupManagementUsageList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link BackupManagementUsageList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    list(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.BackupManagementUsageList>;
+    list(vaultName: string, resourceGroupName: string, callback: ServiceCallback<models.BackupManagementUsageList>): void;
+    list(vaultName: string, resourceGroupName: string, options: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.BackupManagementUsageList>): void;
+}
+
+/**
+ * @class
+ * Operation
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface Operation {
+
+
+    /**
+     * Validate operation for specified backed up item. This is a synchronous
+     * operation.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} parameters resource validate operation request
+     *
+     * @param {string} parameters.objectType Polymorphic Discriminator
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ValidateOperationsResponse>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    validateWithHttpOperationResponse(vaultName: string, resourceGroupName: string, parameters: models.ValidateOperationRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ValidateOperationsResponse>>;
+
+    /**
+     * Validate operation for specified backed up item. This is a synchronous
+     * operation.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {object} parameters resource validate operation request
+     *
+     * @param {string} parameters.objectType Polymorphic Discriminator
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ValidateOperationsResponse} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ValidateOperationsResponse} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ValidateOperationsResponse} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    validate(vaultName: string, resourceGroupName: string, parameters: models.ValidateOperationRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ValidateOperationsResponse>;
+    validate(vaultName: string, resourceGroupName: string, parameters: models.ValidateOperationRequest, callback: ServiceCallback<models.ValidateOperationsResponse>): void;
+    validate(vaultName: string, resourceGroupName: string, parameters: models.ValidateOperationRequest, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ValidateOperationsResponse>): void;
+}
+
+/**
+ * @class
  * BackupResourceVaultConfigs
  * __NOTE__: An instance of this class is automatically created for an
  * instance of the RecoveryServicesBackupClient.
@@ -305,6 +1578,9 @@ export interface BackupResourceVaultConfigs {
      * @param {object} [parameters.properties] BackupResourceVaultConfigResource
      * properties
      *
+     * @param {string} [parameters.properties.storageModelType] Storage type.
+     * Possible values include: 'Invalid', 'GeoRedundant', 'LocallyRedundant'
+     *
      * @param {string} [parameters.properties.storageType] Storage type. Possible
      * values include: 'Invalid', 'GeoRedundant', 'LocallyRedundant'
      *
@@ -346,6 +1622,9 @@ export interface BackupResourceVaultConfigs {
      *
      * @param {object} [parameters.properties] BackupResourceVaultConfigResource
      * properties
+     *
+     * @param {string} [parameters.properties.storageModelType] Storage type.
+     * Possible values include: 'Invalid', 'GeoRedundant', 'LocallyRedundant'
      *
      * @param {string} [parameters.properties.storageType] Storage type. Possible
      * values include: 'Invalid', 'GeoRedundant', 'LocallyRedundant'
@@ -694,6 +1973,143 @@ export interface ProtectionContainerRefreshOperationResults {
 
 /**
  * @class
+ * ProtectableContainers
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface ProtectableContainers {
+
+
+    /**
+     * Lists the containers that can be registered to Recovery Services Vault.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the container.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectableContainerResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectableContainerResourceList>>;
+
+    /**
+     * Lists the containers that can be registered to Recovery Services Vault.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the container.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectableContainerResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectableContainerResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectableContainerResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    list(vaultName: string, resourceGroupName: string, fabricName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectableContainerResourceList>;
+    list(vaultName: string, resourceGroupName: string, fabricName: string, callback: ServiceCallback<models.ProtectableContainerResourceList>): void;
+    list(vaultName: string, resourceGroupName: string, fabricName: string, options: { filter? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectableContainerResourceList>): void;
+
+
+    /**
+     * Lists the containers that can be registered to Recovery Services Vault.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectableContainerResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listNextWithHttpOperationResponse(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectableContainerResourceList>>;
+
+    /**
+     * Lists the containers that can be registered to Recovery Services Vault.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectableContainerResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectableContainerResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectableContainerResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listNext(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectableContainerResourceList>;
+    listNext(nextPageLink: string, callback: ServiceCallback<models.ProtectableContainerResourceList>): void;
+    listNext(nextPageLink: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectableContainerResourceList>): void;
+}
+
+/**
+ * @class
  * ProtectionContainers
  * __NOTE__: An instance of this class is automatically created for an
  * instance of the RecoveryServicesBackupClient.
@@ -776,16 +2192,152 @@ export interface ProtectionContainers {
 
 
     /**
-     * Discovers all the containers in the subscription that can be backed up to
-     * Recovery Services Vault. This is an asynchronous operation. To know the
-     * status of the operation, call GetRefreshOperationResult API.
+     * Registers the container with Recovery Services vault.
+     * This is an asynchronous operation. To track the operation status, use
+     * location header to call get latest status of
+     * the operation.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
      * @param {string} resourceGroupName The name of the resource group where the
      * recovery services vault is present.
      *
-     * @param {string} fabricName Fabric name associated the container.
+     * @param {string} fabricName Fabric name associated with the container.
+     *
+     * @param {string} containerName Name of the container to be registered.
+     *
+     * @param {object} parameters Request body for operation
+     *
+     * @param {object} [parameters.properties] ProtectionContainerResource
+     * properties
+     *
+     * @param {string} [parameters.properties.friendlyName] Friendly name of the
+     * container.
+     *
+     * @param {string} [parameters.properties.backupManagementType] Type of backup
+     * managemenent for the container. Possible values include: 'Invalid',
+     * 'AzureIaasVM', 'MAB', 'DPM', 'AzureBackupServer', 'AzureSql',
+     * 'AzureStorage', 'AzureWorkload', 'DefaultBackup'
+     *
+     * @param {string} [parameters.properties.registrationStatus] Status of
+     * registration of the container with the Recovery Services Vault.
+     *
+     * @param {string} [parameters.properties.healthStatus] Status of health of the
+     * container.
+     *
+     * @param {string} parameters.properties.containerType Polymorphic
+     * Discriminator
+     *
+     * @param {string} [parameters.location] Resource location.
+     *
+     * @param {object} [parameters.tags] Resource tags.
+     *
+     * @param {string} [parameters.eTag] Optional ETag.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ProtectionContainerResource>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    registerWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, parameters: models.ProtectionContainerResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectionContainerResource>>;
+
+    /**
+     * Registers the container with Recovery Services vault.
+     * This is an asynchronous operation. To track the operation status, use
+     * location header to call get latest status of
+     * the operation.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the container.
+     *
+     * @param {string} containerName Name of the container to be registered.
+     *
+     * @param {object} parameters Request body for operation
+     *
+     * @param {object} [parameters.properties] ProtectionContainerResource
+     * properties
+     *
+     * @param {string} [parameters.properties.friendlyName] Friendly name of the
+     * container.
+     *
+     * @param {string} [parameters.properties.backupManagementType] Type of backup
+     * managemenent for the container. Possible values include: 'Invalid',
+     * 'AzureIaasVM', 'MAB', 'DPM', 'AzureBackupServer', 'AzureSql',
+     * 'AzureStorage', 'AzureWorkload', 'DefaultBackup'
+     *
+     * @param {string} [parameters.properties.registrationStatus] Status of
+     * registration of the container with the Recovery Services Vault.
+     *
+     * @param {string} [parameters.properties.healthStatus] Status of health of the
+     * container.
+     *
+     * @param {string} parameters.properties.containerType Polymorphic
+     * Discriminator
+     *
+     * @param {string} [parameters.location] Resource location.
+     *
+     * @param {object} [parameters.tags] Resource tags.
+     *
+     * @param {string} [parameters.eTag] Optional ETag.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ProtectionContainerResource} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ProtectionContainerResource} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectionContainerResource} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    register(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, parameters: models.ProtectionContainerResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectionContainerResource>;
+    register(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, parameters: models.ProtectionContainerResource, callback: ServiceCallback<models.ProtectionContainerResource>): void;
+    register(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, parameters: models.ProtectionContainerResource, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectionContainerResource>): void;
+
+
+    /**
+     * Unregisters the given container from your Recovery Services Vault. This is
+     * an asynchronous operation. To determine
+     * whether the backend service has finished processing the request, call Get
+     * Container Operation Result API.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Name of the fabric where the container belongs.
+     *
+     * @param {string} containerName Name of the container which needs to be
+     * unregistered from the Recovery Services Vault.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -798,19 +2350,23 @@ export interface ProtectionContainers {
      *
      * @reject {Error|ServiceError} - The error object.
      */
-    refreshWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+    unregisterWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
 
     /**
-     * Discovers all the containers in the subscription that can be backed up to
-     * Recovery Services Vault. This is an asynchronous operation. To know the
-     * status of the operation, call GetRefreshOperationResult API.
+     * Unregisters the given container from your Recovery Services Vault. This is
+     * an asynchronous operation. To determine
+     * whether the backend service has finished processing the request, call Get
+     * Container Operation Result API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
      * @param {string} resourceGroupName The name of the resource group where the
      * recovery services vault is present.
      *
-     * @param {string} fabricName Fabric name associated the container.
+     * @param {string} fabricName Name of the fabric where the container belongs.
+     *
+     * @param {string} containerName Name of the container which needs to be
+     * unregistered from the Recovery Services Vault.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -838,9 +2394,316 @@ export interface ProtectionContainers {
      *
      *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
      */
-    refresh(vaultName: string, resourceGroupName: string, fabricName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    unregister(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    unregister(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, callback: ServiceCallback<void>): void;
+    unregister(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+
+
+    /**
+     * @summary Inquires all the protectable items under the given container.
+     *
+     * This is an async operation and the results should be tracked using location
+     * header or Azure-async-url.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric Name associated with the container.
+     *
+     * @param {string} containerName Name of the container in which inquiry needs
+     * to be triggered.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    inquireWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * @summary Inquires all the protectable items under the given container.
+     *
+     * This is an async operation and the results should be tracked using location
+     * header or Azure-async-url.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric Name associated with the container.
+     *
+     * @param {string} containerName Name of the container in which inquiry needs
+     * to be triggered.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    inquire(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    inquire(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, callback: ServiceCallback<void>): void;
+    inquire(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, options: { filter? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+
+
+    /**
+     * Discovers all the containers in the subscription that can be backed up to
+     * Recovery Services Vault. This is an
+     * asynchronous operation. To know the status of the operation, call
+     * GetRefreshOperationResult API.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated the container.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    refreshWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * Discovers all the containers in the subscription that can be backed up to
+     * Recovery Services Vault. This is an
+     * asynchronous operation. To know the status of the operation, call
+     * GetRefreshOperationResult API.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated the container.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    refresh(vaultName: string, resourceGroupName: string, fabricName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<void>;
     refresh(vaultName: string, resourceGroupName: string, fabricName: string, callback: ServiceCallback<void>): void;
-    refresh(vaultName: string, resourceGroupName: string, fabricName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+    refresh(vaultName: string, resourceGroupName: string, fabricName: string, options: { filter? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+}
+
+/**
+ * @class
+ * BackupWorkloadItems
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the RecoveryServicesBackupClient.
+ */
+export interface BackupWorkloadItems {
+
+
+    /**
+     * Provides a pageable list of workload item of a specific container according
+     * to the query filter and the pagination
+     * parameters.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the container.
+     *
+     * @param {string} containerName Name of the container.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {string} [options.skipToken] skipToken Filter.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<WorkloadItemResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.WorkloadItemResourceList>>;
+
+    /**
+     * Provides a pageable list of workload item of a specific container according
+     * to the query filter and the pagination
+     * parameters.
+     *
+     * @param {string} vaultName The name of the recovery services vault.
+     *
+     * @param {string} resourceGroupName The name of the resource group where the
+     * recovery services vault is present.
+     *
+     * @param {string} fabricName Fabric name associated with the container.
+     *
+     * @param {string} containerName Name of the container.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.filter] OData filter options.
+     *
+     * @param {string} [options.skipToken] skipToken Filter.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {WorkloadItemResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {WorkloadItemResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link WorkloadItemResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    list(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.WorkloadItemResourceList>;
+    list(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, callback: ServiceCallback<models.WorkloadItemResourceList>): void;
+    list(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, options: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.WorkloadItemResourceList>): void;
+
+
+    /**
+     * Provides a pageable list of workload item of a specific container according
+     * to the query filter and the pagination
+     * parameters.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<WorkloadItemResourceList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listNextWithHttpOperationResponse(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.WorkloadItemResourceList>>;
+
+    /**
+     * Provides a pageable list of workload item of a specific container according
+     * to the query filter and the pagination
+     * parameters.
+     *
+     * @param {string} nextPageLink The NextLink from the previous successful call
+     * to List operation.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {WorkloadItemResourceList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {WorkloadItemResourceList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link WorkloadItemResourceList} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listNext(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.WorkloadItemResourceList>;
+    listNext(nextPageLink: string, callback: ServiceCallback<models.WorkloadItemResourceList>): void;
+    listNext(nextPageLink: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.WorkloadItemResourceList>): void;
 }
 
 /**
@@ -941,8 +2804,8 @@ export interface ProtectedItems {
 
     /**
      * Provides the details of the backed up item. This is an asynchronous
-     * operation. To know the status of the operation, call the
-     * GetItemOperationResult API.
+     * operation. To know the status of the operation,
+     * call the GetItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -974,8 +2837,8 @@ export interface ProtectedItems {
 
     /**
      * Provides the details of the backed up item. This is an asynchronous
-     * operation. To know the status of the operation, call the
-     * GetItemOperationResult API.
+     * operation. To know the status of the operation,
+     * call the GetItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1026,8 +2889,9 @@ export interface ProtectedItems {
 
     /**
      * Enables backup of an item or to modifies the backup policy information of an
-     * already backed up item. This is an asynchronous operation. To know the
-     * status of the operation, call the GetItemOperationResult API.
+     * already backed up item. This is an
+     * asynchronous operation. To know the status of the operation, call the
+     * GetItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1047,12 +2911,14 @@ export interface ProtectedItems {
      *
      * @param {string} [parameters.properties.backupManagementType] Type of backup
      * managemenent for the backed up item. Possible values include: 'Invalid',
-     * 'AzureIaasVM', 'MAB', 'DPM', 'AzureBackupServer', 'AzureSql'
+     * 'AzureIaasVM', 'MAB', 'DPM', 'AzureBackupServer', 'AzureSql',
+     * 'AzureStorage', 'AzureWorkload', 'DefaultBackup'
      *
      * @param {string} [parameters.properties.workloadType] Type of workload this
      * item represents. Possible values include: 'Invalid', 'VM', 'FileFolder',
      * 'AzureSqlDb', 'SQLDB', 'Exchange', 'Sharepoint', 'VMwareVM', 'SystemState',
-     * 'Client', 'GenericDataSource'
+     * 'Client', 'GenericDataSource', 'SQLDataBase', 'AzureFileShare',
+     * 'SAPHanaDatabase'
      *
      * @param {string} [parameters.properties.containerName] Unique name of
      * container
@@ -1065,6 +2931,13 @@ export interface ProtectedItems {
      *
      * @param {date} [parameters.properties.lastRecoveryPoint] Timestamp when the
      * last (latest) backup copy was created for this backup item.
+     *
+     * @param {string} [parameters.properties.backupSetName] Name of the backup set
+     * the backup item belongs to
+     *
+     * @param {string} [parameters.properties.createMode] Create mode to indicate
+     * recovery of existing soft deleted data source or creation of new data
+     * source. Possible values include: 'Invalid', 'Default', 'Recover'
      *
      * @param {string} parameters.properties.protectedItemType Polymorphic
      * Discriminator
@@ -1082,16 +2955,17 @@ export interface ProtectedItems {
      *
      * @returns {Promise} A promise is returned
      *
-     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     * @resolve {HttpOperationResponse<ProtectedItemResource>} - The deserialized result object.
      *
      * @reject {Error|ServiceError} - The error object.
      */
-    createOrUpdateWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, protectedItemName: string, parameters: models.ProtectedItemResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+    createOrUpdateWithHttpOperationResponse(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, protectedItemName: string, parameters: models.ProtectedItemResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectedItemResource>>;
 
     /**
      * Enables backup of an item or to modifies the backup policy information of an
-     * already backed up item. This is an asynchronous operation. To know the
-     * status of the operation, call the GetItemOperationResult API.
+     * already backed up item. This is an
+     * asynchronous operation. To know the status of the operation, call the
+     * GetItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1111,12 +2985,14 @@ export interface ProtectedItems {
      *
      * @param {string} [parameters.properties.backupManagementType] Type of backup
      * managemenent for the backed up item. Possible values include: 'Invalid',
-     * 'AzureIaasVM', 'MAB', 'DPM', 'AzureBackupServer', 'AzureSql'
+     * 'AzureIaasVM', 'MAB', 'DPM', 'AzureBackupServer', 'AzureSql',
+     * 'AzureStorage', 'AzureWorkload', 'DefaultBackup'
      *
      * @param {string} [parameters.properties.workloadType] Type of workload this
      * item represents. Possible values include: 'Invalid', 'VM', 'FileFolder',
      * 'AzureSqlDb', 'SQLDB', 'Exchange', 'Sharepoint', 'VMwareVM', 'SystemState',
-     * 'Client', 'GenericDataSource'
+     * 'Client', 'GenericDataSource', 'SQLDataBase', 'AzureFileShare',
+     * 'SAPHanaDatabase'
      *
      * @param {string} [parameters.properties.containerName] Unique name of
      * container
@@ -1129,6 +3005,13 @@ export interface ProtectedItems {
      *
      * @param {date} [parameters.properties.lastRecoveryPoint] Timestamp when the
      * last (latest) backup copy was created for this backup item.
+     *
+     * @param {string} [parameters.properties.backupSetName] Name of the backup set
+     * the backup item belongs to
+     *
+     * @param {string} [parameters.properties.createMode] Create mode to indicate
+     * recovery of existing soft deleted data source or creation of new data
+     * source. Possible values include: 'Invalid', 'Default', 'Recover'
      *
      * @param {string} parameters.properties.protectedItemType Polymorphic
      * Discriminator
@@ -1151,7 +3034,7 @@ export interface ProtectedItems {
      *
      * {Promise} A promise is returned.
      *
-     *                      @resolve {null} - The deserialized result object.
+     *                      @resolve {ProtectedItemResource} - The deserialized result object.
      *
      *                      @reject {Error|ServiceError} - The error object.
      *
@@ -1159,21 +3042,22 @@ export interface ProtectedItems {
      *
      *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
      *
-     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *                      {ProtectedItemResource} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ProtectedItemResource} for more information.
      *
      *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
      *
      *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
      */
-    createOrUpdate(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, protectedItemName: string, parameters: models.ProtectedItemResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
-    createOrUpdate(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, protectedItemName: string, parameters: models.ProtectedItemResource, callback: ServiceCallback<void>): void;
-    createOrUpdate(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, protectedItemName: string, parameters: models.ProtectedItemResource, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+    createOrUpdate(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, protectedItemName: string, parameters: models.ProtectedItemResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectedItemResource>;
+    createOrUpdate(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, protectedItemName: string, parameters: models.ProtectedItemResource, callback: ServiceCallback<models.ProtectedItemResource>): void;
+    createOrUpdate(vaultName: string, resourceGroupName: string, fabricName: string, containerName: string, protectedItemName: string, parameters: models.ProtectedItemResource, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectedItemResource>): void;
 
 
     /**
      * Used to disable backup of an item within a container. This is an
-     * asynchronous operation. To know the status of the request, call the
-     * GetItemOperationResult API.
+     * asynchronous operation. To know the status of the
+     * request, call the GetItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1202,8 +3086,8 @@ export interface ProtectedItems {
 
     /**
      * Used to disable backup of an item within a container. This is an
-     * asynchronous operation. To know the status of the request, call the
-     * GetItemOperationResult API.
+     * asynchronous operation. To know the status of the
+     * request, call the GetItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1259,8 +3143,8 @@ export interface Backups {
 
     /**
      * Triggers backup for specified backed up item. This is an asynchronous
-     * operation. To know the status of the operation, call
-     * GetProtectedItemOperationResult API.
+     * operation. To know the status of the
+     * operation, call GetProtectedItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1302,8 +3186,8 @@ export interface Backups {
 
     /**
      * Triggers backup for specified backed up item. This is an asynchronous
-     * operation. To know the status of the operation, call
-     * GetProtectedItemOperationResult API.
+     * operation. To know the status of the
+     * operation, call GetProtectedItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1464,10 +3348,11 @@ export interface ProtectedItemOperationStatuses {
 
     /**
      * Fetches the status of an operation such as triggering a backup, restore. The
-     * status can be in progress, completed or failed. You can refer to the
-     * OperationStatus enum for all the possible states of the operation. Some
-     * operations create jobs. This method returns the list of jobs associated with
-     * the operation.
+     * status can be in progress, completed
+     * or failed. You can refer to the OperationStatus enum for all the possible
+     * states of the operation. Some operations
+     * create jobs. This method returns the list of jobs associated with the
+     * operation.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1500,10 +3385,11 @@ export interface ProtectedItemOperationStatuses {
 
     /**
      * Fetches the status of an operation such as triggering a backup, restore. The
-     * status can be in progress, completed or failed. You can refer to the
-     * OperationStatus enum for all the possible states of the operation. Some
-     * operations create jobs. This method returns the list of jobs associated with
-     * the operation.
+     * status can be in progress, completed
+     * or failed. You can refer to the OperationStatus enum for all the possible
+     * states of the operation. Some operations
+     * create jobs. This method returns the list of jobs associated with the
+     * operation.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1646,8 +3532,9 @@ export interface RecoveryPoints {
 
     /**
      * Provides the information of the backed up data identified using
-     * RecoveryPointID. This is an asynchronous operation. To know the status of
-     * the operation, call the GetProtectedItemOperationResult API.
+     * RecoveryPointID. This is an asynchronous operation.
+     * To know the status of the operation, call the
+     * GetProtectedItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1679,8 +3566,9 @@ export interface RecoveryPoints {
 
     /**
      * Provides the information of the backed up data identified using
-     * RecoveryPointID. This is an asynchronous operation. To know the status of
-     * the operation, call the GetProtectedItemOperationResult API.
+     * RecoveryPointID. This is an asynchronous operation.
+     * To know the status of the operation, call the
+     * GetProtectedItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1798,8 +3686,9 @@ export interface ItemLevelRecoveryConnections {
 
     /**
      * Provisions a script which invokes an iSCSI connection to the backup data.
-     * Executing this script opens a file explorer displaying all the recoverable
-     * files and folders. This is an asynchronous operation. To know the status of
+     * Executing this script opens a file
+     * explorer displaying all the recoverable files and folders. This is an
+     * asynchronous operation. To know the status of
      * provisioning, call GetProtectedItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
@@ -1816,7 +3705,8 @@ export interface ItemLevelRecoveryConnections {
      * are to be restored.
      *
      * @param {string} recoveryPointId Recovery point ID which represents backed up
-     * data. iSCSI connection will be provisioned for this backed up data.
+     * data. iSCSI connection will be provisioned
+     * for this backed up data.
      *
      * @param {object} parameters resource ILR request
      *
@@ -1845,8 +3735,9 @@ export interface ItemLevelRecoveryConnections {
 
     /**
      * Provisions a script which invokes an iSCSI connection to the backup data.
-     * Executing this script opens a file explorer displaying all the recoverable
-     * files and folders. This is an asynchronous operation. To know the status of
+     * Executing this script opens a file
+     * explorer displaying all the recoverable files and folders. This is an
+     * asynchronous operation. To know the status of
      * provisioning, call GetProtectedItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
@@ -1863,7 +3754,8 @@ export interface ItemLevelRecoveryConnections {
      * are to be restored.
      *
      * @param {string} recoveryPointId Recovery point ID which represents backed up
-     * data. iSCSI connection will be provisioned for this backed up data.
+     * data. iSCSI connection will be provisioned
+     * for this backed up data.
      *
      * @param {object} parameters resource ILR request
      *
@@ -1910,8 +3802,9 @@ export interface ItemLevelRecoveryConnections {
 
     /**
      * Revokes an iSCSI connection which can be used to download a script.
-     * Executing this script opens a file explorer displaying all recoverable files
-     * and folders. This is an asynchronous operation.
+     * Executing this script opens a file explorer
+     * displaying all recoverable files and folders. This is an asynchronous
+     * operation.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1927,7 +3820,8 @@ export interface ItemLevelRecoveryConnections {
      * are to be restored.
      *
      * @param {string} recoveryPointId Recovery point ID which represents backed up
-     * data. iSCSI connection will be revoked for this backed up data.
+     * data. iSCSI connection will be revoked for
+     * this backed up data.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1944,8 +3838,9 @@ export interface ItemLevelRecoveryConnections {
 
     /**
      * Revokes an iSCSI connection which can be used to download a script.
-     * Executing this script opens a file explorer displaying all recoverable files
-     * and folders. This is an asynchronous operation.
+     * Executing this script opens a file explorer
+     * displaying all recoverable files and folders. This is an asynchronous
+     * operation.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -1961,7 +3856,8 @@ export interface ItemLevelRecoveryConnections {
      * are to be restored.
      *
      * @param {string} recoveryPointId Recovery point ID which represents backed up
-     * data. iSCSI connection will be revoked for this backed up data.
+     * data. iSCSI connection will be revoked for
+     * this backed up data.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -2005,7 +3901,8 @@ export interface Restores {
 
     /**
      * Restores the specified backed up data. This is an asynchronous operation. To
-     * know the status of this API call, use GetProtectedItemOperationResult API.
+     * know the status of this API call, use
+     * GetProtectedItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2049,7 +3946,8 @@ export interface Restores {
 
     /**
      * Restores the specified backed up data. This is an asynchronous operation. To
-     * know the status of this API call, use GetProtectedItemOperationResult API.
+     * know the status of this API call, use
+     * GetProtectedItemOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2120,7 +4018,8 @@ export interface JobCancellations {
 
     /**
      * Cancels a job. This is an asynchronous operation. To know the status of the
-     * cancellation, call GetCancelOperationResult API.
+     * cancellation, call
+     * GetCancelOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2144,7 +4043,8 @@ export interface JobCancellations {
 
     /**
      * Cancels a job. This is an asynchronous operation. To know the status of the
-     * cancellation, call GetCancelOperationResult API.
+     * cancellation, call
+     * GetCancelOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2267,162 +4167,6 @@ export interface JobOperationResults {
 
 /**
  * @class
- * ExportJobsOperationResults
- * __NOTE__: An instance of this class is automatically created for an
- * instance of the RecoveryServicesBackupClient.
- */
-export interface ExportJobsOperationResults {
-
-
-    /**
-     * Gets the operation result of operation triggered by Export Jobs API. If the
-     * operation is successful, then it also contains URL of a Blob and a SAS key
-     * to access the same. The blob contains exported jobs in JSON serialized
-     * format.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {string} operationId OperationID which represents the export job.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @returns {Promise} A promise is returned
-     *
-     * @resolve {HttpOperationResponse<OperationResultInfoBaseResource>} - The deserialized result object.
-     *
-     * @reject {Error|ServiceError} - The error object.
-     */
-    getWithHttpOperationResponse(vaultName: string, resourceGroupName: string, operationId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.OperationResultInfoBaseResource>>;
-
-    /**
-     * Gets the operation result of operation triggered by Export Jobs API. If the
-     * operation is successful, then it also contains URL of a Blob and a SAS key
-     * to access the same. The blob contains exported jobs in JSON serialized
-     * format.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {string} operationId OperationID which represents the export job.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @param {ServiceCallback} [optionalCallback] - The optional callback.
-     *
-     * @returns {ServiceCallback|Promise} If a callback was passed as the last
-     * parameter then it returns the callback else returns a Promise.
-     *
-     * {Promise} A promise is returned.
-     *
-     *                      @resolve {OperationResultInfoBaseResource} - The deserialized result object.
-     *
-     *                      @reject {Error|ServiceError} - The error object.
-     *
-     * {ServiceCallback} optionalCallback(err, result, request, response)
-     *
-     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-     *
-     *                      {OperationResultInfoBaseResource} [result]   - The deserialized result object if an error did not occur.
-     *                      See {@link OperationResultInfoBaseResource} for more
-     *                      information.
-     *
-     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-     *
-     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
-     */
-    get(vaultName: string, resourceGroupName: string, operationId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.OperationResultInfoBaseResource>;
-    get(vaultName: string, resourceGroupName: string, operationId: string, callback: ServiceCallback<models.OperationResultInfoBaseResource>): void;
-    get(vaultName: string, resourceGroupName: string, operationId: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.OperationResultInfoBaseResource>): void;
-}
-
-/**
- * @class
- * Jobs
- * __NOTE__: An instance of this class is automatically created for an
- * instance of the RecoveryServicesBackupClient.
- */
-export interface Jobs {
-
-
-    /**
-     * Triggers export of jobs specified by filters and returns an OperationID to
-     * track.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {string} [options.filter] OData filter options.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @returns {Promise} A promise is returned
-     *
-     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
-     *
-     * @reject {Error|ServiceError} - The error object.
-     */
-    exportMethodWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
-
-    /**
-     * Triggers export of jobs specified by filters and returns an OperationID to
-     * track.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {string} [options.filter] OData filter options.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @param {ServiceCallback} [optionalCallback] - The optional callback.
-     *
-     * @returns {ServiceCallback|Promise} If a callback was passed as the last
-     * parameter then it returns the callback else returns a Promise.
-     *
-     * {Promise} A promise is returned.
-     *
-     *                      @resolve {null} - The deserialized result object.
-     *
-     *                      @reject {Error|ServiceError} - The error object.
-     *
-     * {ServiceCallback} optionalCallback(err, result, request, response)
-     *
-     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-     *
-     *                      {null} [result]   - The deserialized result object if an error did not occur.
-     *
-     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-     *
-     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
-     */
-    exportMethod(vaultName: string, resourceGroupName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<void>;
-    exportMethod(vaultName: string, resourceGroupName: string, callback: ServiceCallback<void>): void;
-    exportMethod(vaultName: string, resourceGroupName: string, options: { filter? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
-}
-
-/**
- * @class
  * BackupOperationResults
  * __NOTE__: An instance of this class is automatically created for an
  * instance of the RecoveryServicesBackupClient.
@@ -2432,11 +4176,12 @@ export interface BackupOperationResults {
 
     /**
      * Provides the status of the delete operations such as deleting backed up
-     * item. Once the operation has started, the status code in the response would
-     * be Accepted. It will continue to be in this state till it reaches
-     * completion. On successful completion, the status code will be OK. This
-     * method expects OperationID as an argument. OperationID is part of the
-     * Location header of the operation response.
+     * item. Once the operation has started, the
+     * status code in the response would be Accepted. It will continue to be in
+     * this state till it reaches completion. On
+     * successful completion, the status code will be OK. This method expects
+     * OperationID as an argument. OperationID is
+     * part of the Location header of the operation response.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2460,11 +4205,12 @@ export interface BackupOperationResults {
 
     /**
      * Provides the status of the delete operations such as deleting backed up
-     * item. Once the operation has started, the status code in the response would
-     * be Accepted. It will continue to be in this state till it reaches
-     * completion. On successful completion, the status code will be OK. This
-     * method expects OperationID as an argument. OperationID is part of the
-     * Location header of the operation response.
+     * item. Once the operation has started, the
+     * status code in the response would be Accepted. It will continue to be in
+     * this state till it reaches completion. On
+     * successful completion, the status code will be OK. This method expects
+     * OperationID as an argument. OperationID is
+     * part of the Location header of the operation response.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2515,10 +4261,11 @@ export interface BackupOperationStatuses {
 
     /**
      * Fetches the status of an operation such as triggering a backup, restore. The
-     * status can be in progress, completed or failed. You can refer to the
-     * OperationStatus enum for all the possible states of an operation. Some
-     * operations create jobs. This method returns the list of jobs when the
-     * operation is complete.
+     * status can be in progress, completed
+     * or failed. You can refer to the OperationStatus enum for all the possible
+     * states of an operation. Some operations
+     * create jobs. This method returns the list of jobs when the operation is
+     * complete.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2542,10 +4289,11 @@ export interface BackupOperationStatuses {
 
     /**
      * Fetches the status of an operation such as triggering a backup, restore. The
-     * status can be in progress, completed or failed. You can refer to the
-     * OperationStatus enum for all the possible states of an operation. Some
-     * operations create jobs. This method returns the list of jobs when the
-     * operation is complete.
+     * status can be in progress, completed
+     * or failed. You can refer to the OperationStatus enum for all the possible
+     * states of an operation. Some operations
+     * create jobs. This method returns the list of jobs when the operation is
+     * complete.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2588,143 +4336,6 @@ export interface BackupOperationStatuses {
 
 /**
  * @class
- * BackupPolicies
- * __NOTE__: An instance of this class is automatically created for an
- * instance of the RecoveryServicesBackupClient.
- */
-export interface BackupPolicies {
-
-
-    /**
-     * Lists of backup policies associated with Recovery Services Vault. API
-     * provides pagination parameters to fetch scoped results.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {string} [options.filter] OData filter options.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @returns {Promise} A promise is returned
-     *
-     * @resolve {HttpOperationResponse<ProtectionPolicyResourceList>} - The deserialized result object.
-     *
-     * @reject {Error|ServiceError} - The error object.
-     */
-    listWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectionPolicyResourceList>>;
-
-    /**
-     * Lists of backup policies associated with Recovery Services Vault. API
-     * provides pagination parameters to fetch scoped results.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {string} [options.filter] OData filter options.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @param {ServiceCallback} [optionalCallback] - The optional callback.
-     *
-     * @returns {ServiceCallback|Promise} If a callback was passed as the last
-     * parameter then it returns the callback else returns a Promise.
-     *
-     * {Promise} A promise is returned.
-     *
-     *                      @resolve {ProtectionPolicyResourceList} - The deserialized result object.
-     *
-     *                      @reject {Error|ServiceError} - The error object.
-     *
-     * {ServiceCallback} optionalCallback(err, result, request, response)
-     *
-     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-     *
-     *                      {ProtectionPolicyResourceList} [result]   - The deserialized result object if an error did not occur.
-     *                      See {@link ProtectionPolicyResourceList} for more
-     *                      information.
-     *
-     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-     *
-     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
-     */
-    list(vaultName: string, resourceGroupName: string, options?: { filter? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectionPolicyResourceList>;
-    list(vaultName: string, resourceGroupName: string, callback: ServiceCallback<models.ProtectionPolicyResourceList>): void;
-    list(vaultName: string, resourceGroupName: string, options: { filter? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectionPolicyResourceList>): void;
-
-
-    /**
-     * Lists of backup policies associated with Recovery Services Vault. API
-     * provides pagination parameters to fetch scoped results.
-     *
-     * @param {string} nextPageLink The NextLink from the previous successful call
-     * to List operation.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @returns {Promise} A promise is returned
-     *
-     * @resolve {HttpOperationResponse<ProtectionPolicyResourceList>} - The deserialized result object.
-     *
-     * @reject {Error|ServiceError} - The error object.
-     */
-    listNextWithHttpOperationResponse(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectionPolicyResourceList>>;
-
-    /**
-     * Lists of backup policies associated with Recovery Services Vault. API
-     * provides pagination parameters to fetch scoped results.
-     *
-     * @param {string} nextPageLink The NextLink from the previous successful call
-     * to List operation.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @param {ServiceCallback} [optionalCallback] - The optional callback.
-     *
-     * @returns {ServiceCallback|Promise} If a callback was passed as the last
-     * parameter then it returns the callback else returns a Promise.
-     *
-     * {Promise} A promise is returned.
-     *
-     *                      @resolve {ProtectionPolicyResourceList} - The deserialized result object.
-     *
-     *                      @reject {Error|ServiceError} - The error object.
-     *
-     * {ServiceCallback} optionalCallback(err, result, request, response)
-     *
-     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-     *
-     *                      {ProtectionPolicyResourceList} [result]   - The deserialized result object if an error did not occur.
-     *                      See {@link ProtectionPolicyResourceList} for more
-     *                      information.
-     *
-     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-     *
-     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
-     */
-    listNext(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectionPolicyResourceList>;
-    listNext(nextPageLink: string, callback: ServiceCallback<models.ProtectionPolicyResourceList>): void;
-    listNext(nextPageLink: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectionPolicyResourceList>): void;
-}
-
-/**
- * @class
  * ProtectionPolicies
  * __NOTE__: An instance of this class is automatically created for an
  * instance of the RecoveryServicesBackupClient.
@@ -2734,8 +4345,9 @@ export interface ProtectionPolicies {
 
     /**
      * Provides the details of the backup policies associated to Recovery Services
-     * Vault. This is an asynchronous operation. Status of the operation can be
-     * fetched using GetPolicyOperationResult API.
+     * Vault. This is an asynchronous
+     * operation. Status of the operation can be fetched using
+     * GetPolicyOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2759,8 +4371,9 @@ export interface ProtectionPolicies {
 
     /**
      * Provides the details of the backup policies associated to Recovery Services
-     * Vault. This is an asynchronous operation. Status of the operation can be
-     * fetched using GetPolicyOperationResult API.
+     * Vault. This is an asynchronous
+     * operation. Status of the operation can be fetched using
+     * GetPolicyOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2804,7 +4417,8 @@ export interface ProtectionPolicies {
 
     /**
      * Creates or modifies a backup policy. This is an asynchronous operation.
-     * Status of the operation can be fetched using GetPolicyOperationResult API.
+     * Status of the operation can be fetched
+     * using GetPolicyOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2844,7 +4458,8 @@ export interface ProtectionPolicies {
 
     /**
      * Creates or modifies a backup policy. This is an asynchronous operation.
-     * Status of the operation can be fetched using GetPolicyOperationResult API.
+     * Status of the operation can be fetched
+     * using GetPolicyOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2904,8 +4519,8 @@ export interface ProtectionPolicies {
 
     /**
      * Deletes specified backup policy from your Recovery Services Vault. This is
-     * an asynchronous operation. Status of the operation can be fetched using
-     * GetPolicyOperationResult API.
+     * an asynchronous operation. Status of the
+     * operation can be fetched using GetPolicyOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -2929,8 +4544,8 @@ export interface ProtectionPolicies {
 
     /**
      * Deletes specified backup policy from your Recovery Services Vault. This is
-     * an asynchronous operation. Status of the operation can be fetched using
-     * GetPolicyOperationResult API.
+     * an asynchronous operation. Status of the
+     * operation can be fetched using GetPolicyOperationResult API.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -3064,10 +4679,10 @@ export interface ProtectionPolicyOperationStatuses {
 
     /**
      * Provides the status of the asynchronous operations like backup, restore. The
-     * status can be in progress, completed or failed. You can refer to the
-     * Operation Status enum for all the possible states of an operation. Some
-     * operations create jobs. This method returns the list of jobs associated with
-     * operation.
+     * status can be in progress, completed
+     * or failed. You can refer to the Operation Status enum for all the possible
+     * states of an operation. Some operations
+     * create jobs. This method returns the list of jobs associated with operation.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -3095,10 +4710,10 @@ export interface ProtectionPolicyOperationStatuses {
 
     /**
      * Provides the status of the asynchronous operations like backup, restore. The
-     * status can be in progress, completed or failed. You can refer to the
-     * Operation Status enum for all the possible states of an operation. Some
-     * operations create jobs. This method returns the list of jobs associated with
-     * operation.
+     * status can be in progress, completed
+     * or failed. You can refer to the Operation Status enum for all the possible
+     * states of an operation. Some operations
+     * create jobs. This method returns the list of jobs associated with operation.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -3154,7 +4769,8 @@ export interface BackupProtectableItems {
 
     /**
      * Provides a pageable list of protectable objects within your subscription
-     * according to the query filter and the pagination parameters.
+     * according to the query filter and the
+     * pagination parameters.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -3180,7 +4796,8 @@ export interface BackupProtectableItems {
 
     /**
      * Provides a pageable list of protectable objects within your subscription
-     * according to the query filter and the pagination parameters.
+     * according to the query filter and the
+     * pagination parameters.
      *
      * @param {string} vaultName The name of the recovery services vault.
      *
@@ -3226,7 +4843,8 @@ export interface BackupProtectableItems {
 
     /**
      * Provides a pageable list of protectable objects within your subscription
-     * according to the query filter and the pagination parameters.
+     * according to the query filter and the
+     * pagination parameters.
      *
      * @param {string} nextPageLink The NextLink from the previous successful call
      * to List operation.
@@ -3246,7 +4864,8 @@ export interface BackupProtectableItems {
 
     /**
      * Provides a pageable list of protectable objects within your subscription
-     * according to the query filter and the pagination parameters.
+     * according to the query filter and the
+     * pagination parameters.
      *
      * @param {string} nextPageLink The NextLink from the previous successful call
      * to List operation.
@@ -3282,143 +4901,6 @@ export interface BackupProtectableItems {
     listNext(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.WorkloadProtectableItemResourceList>;
     listNext(nextPageLink: string, callback: ServiceCallback<models.WorkloadProtectableItemResourceList>): void;
     listNext(nextPageLink: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.WorkloadProtectableItemResourceList>): void;
-}
-
-/**
- * @class
- * BackupProtectedItems
- * __NOTE__: An instance of this class is automatically created for an
- * instance of the RecoveryServicesBackupClient.
- */
-export interface BackupProtectedItems {
-
-
-    /**
-     * Provides a pageable list of all items that are backed up within a vault.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {string} [options.filter] OData filter options.
-     *
-     * @param {string} [options.skipToken] skipToken Filter.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @returns {Promise} A promise is returned
-     *
-     * @resolve {HttpOperationResponse<ProtectedItemResourceList>} - The deserialized result object.
-     *
-     * @reject {Error|ServiceError} - The error object.
-     */
-    listWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectedItemResourceList>>;
-
-    /**
-     * Provides a pageable list of all items that are backed up within a vault.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {string} [options.filter] OData filter options.
-     *
-     * @param {string} [options.skipToken] skipToken Filter.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @param {ServiceCallback} [optionalCallback] - The optional callback.
-     *
-     * @returns {ServiceCallback|Promise} If a callback was passed as the last
-     * parameter then it returns the callback else returns a Promise.
-     *
-     * {Promise} A promise is returned.
-     *
-     *                      @resolve {ProtectedItemResourceList} - The deserialized result object.
-     *
-     *                      @reject {Error|ServiceError} - The error object.
-     *
-     * {ServiceCallback} optionalCallback(err, result, request, response)
-     *
-     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-     *
-     *                      {ProtectedItemResourceList} [result]   - The deserialized result object if an error did not occur.
-     *                      See {@link ProtectedItemResourceList} for more
-     *                      information.
-     *
-     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-     *
-     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
-     */
-    list(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectedItemResourceList>;
-    list(vaultName: string, resourceGroupName: string, callback: ServiceCallback<models.ProtectedItemResourceList>): void;
-    list(vaultName: string, resourceGroupName: string, options: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectedItemResourceList>): void;
-
-
-    /**
-     * Provides a pageable list of all items that are backed up within a vault.
-     *
-     * @param {string} nextPageLink The NextLink from the previous successful call
-     * to List operation.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @returns {Promise} A promise is returned
-     *
-     * @resolve {HttpOperationResponse<ProtectedItemResourceList>} - The deserialized result object.
-     *
-     * @reject {Error|ServiceError} - The error object.
-     */
-    listNextWithHttpOperationResponse(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ProtectedItemResourceList>>;
-
-    /**
-     * Provides a pageable list of all items that are backed up within a vault.
-     *
-     * @param {string} nextPageLink The NextLink from the previous successful call
-     * to List operation.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @param {ServiceCallback} [optionalCallback] - The optional callback.
-     *
-     * @returns {ServiceCallback|Promise} If a callback was passed as the last
-     * parameter then it returns the callback else returns a Promise.
-     *
-     * {Promise} A promise is returned.
-     *
-     *                      @resolve {ProtectedItemResourceList} - The deserialized result object.
-     *
-     *                      @reject {Error|ServiceError} - The error object.
-     *
-     * {ServiceCallback} optionalCallback(err, result, request, response)
-     *
-     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-     *
-     *                      {ProtectedItemResourceList} [result]   - The deserialized result object if an error did not occur.
-     *                      See {@link ProtectedItemResourceList} for more
-     *                      information.
-     *
-     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-     *
-     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
-     */
-    listNext(nextPageLink: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ProtectedItemResourceList>;
-    listNext(nextPageLink: string, callback: ServiceCallback<models.ProtectedItemResourceList>): void;
-    listNext(nextPageLink: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ProtectedItemResourceList>): void;
 }
 
 /**
@@ -3703,6 +5185,27 @@ export interface BackupResourceStorageConfigs {
      * @param {string} resourceGroupName The name of the resource group where the
      * recovery services vault is present.
      *
+     * @param {object} parameters Vault storage config request
+     *
+     * @param {object} [parameters.properties] BackupResourceConfigResource
+     * properties
+     *
+     * @param {string} [parameters.properties.storageModelType] Storage type.
+     * Possible values include: 'Invalid', 'GeoRedundant', 'LocallyRedundant'
+     *
+     * @param {string} [parameters.properties.storageType] Storage type. Possible
+     * values include: 'Invalid', 'GeoRedundant', 'LocallyRedundant'
+     *
+     * @param {string} [parameters.properties.storageTypeState] Locked or Unlocked.
+     * Once a machine is registered against a resource, the storageTypeState is
+     * always Locked. Possible values include: 'Invalid', 'Locked', 'Unlocked'
+     *
+     * @param {string} [parameters.location] Resource location.
+     *
+     * @param {object} [parameters.tags] Resource tags.
+     *
+     * @param {string} [parameters.eTag] Optional ETag.
+     *
      * @param {object} [options] Optional Parameters.
      *
      * @param {object} [options.customHeaders] Headers that will be added to the
@@ -3714,7 +5217,7 @@ export interface BackupResourceStorageConfigs {
      *
      * @reject {Error|ServiceError} - The error object.
      */
-    updateWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+    updateWithHttpOperationResponse(vaultName: string, resourceGroupName: string, parameters: models.BackupResourceConfigResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
 
     /**
      * Updates vault storage model type.
@@ -3723,6 +5226,27 @@ export interface BackupResourceStorageConfigs {
      *
      * @param {string} resourceGroupName The name of the resource group where the
      * recovery services vault is present.
+     *
+     * @param {object} parameters Vault storage config request
+     *
+     * @param {object} [parameters.properties] BackupResourceConfigResource
+     * properties
+     *
+     * @param {string} [parameters.properties.storageModelType] Storage type.
+     * Possible values include: 'Invalid', 'GeoRedundant', 'LocallyRedundant'
+     *
+     * @param {string} [parameters.properties.storageType] Storage type. Possible
+     * values include: 'Invalid', 'GeoRedundant', 'LocallyRedundant'
+     *
+     * @param {string} [parameters.properties.storageTypeState] Locked or Unlocked.
+     * Once a machine is registered against a resource, the storageTypeState is
+     * always Locked. Possible values include: 'Invalid', 'Locked', 'Unlocked'
+     *
+     * @param {string} [parameters.location] Resource location.
+     *
+     * @param {object} [parameters.tags] Resource tags.
+     *
+     * @param {string} [parameters.eTag] Optional ETag.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -3750,88 +5274,9 @@ export interface BackupResourceStorageConfigs {
      *
      *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
      */
-    update(vaultName: string, resourceGroupName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
-    update(vaultName: string, resourceGroupName: string, callback: ServiceCallback<void>): void;
-    update(vaultName: string, resourceGroupName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
-}
-
-/**
- * @class
- * BackupUsageSummaries
- * __NOTE__: An instance of this class is automatically created for an
- * instance of the RecoveryServicesBackupClient.
- */
-export interface BackupUsageSummaries {
-
-
-    /**
-     * Fetches the backup management usage summaries of the vault.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {string} [options.filter] OData filter options.
-     *
-     * @param {string} [options.skipToken] skipToken Filter.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @returns {Promise} A promise is returned
-     *
-     * @resolve {HttpOperationResponse<BackupManagementUsageList>} - The deserialized result object.
-     *
-     * @reject {Error|ServiceError} - The error object.
-     */
-    listWithHttpOperationResponse(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.BackupManagementUsageList>>;
-
-    /**
-     * Fetches the backup management usage summaries of the vault.
-     *
-     * @param {string} vaultName The name of the recovery services vault.
-     *
-     * @param {string} resourceGroupName The name of the resource group where the
-     * recovery services vault is present.
-     *
-     * @param {object} [options] Optional Parameters.
-     *
-     * @param {string} [options.filter] OData filter options.
-     *
-     * @param {string} [options.skipToken] skipToken Filter.
-     *
-     * @param {object} [options.customHeaders] Headers that will be added to the
-     * request
-     *
-     * @param {ServiceCallback} [optionalCallback] - The optional callback.
-     *
-     * @returns {ServiceCallback|Promise} If a callback was passed as the last
-     * parameter then it returns the callback else returns a Promise.
-     *
-     * {Promise} A promise is returned.
-     *
-     *                      @resolve {BackupManagementUsageList} - The deserialized result object.
-     *
-     *                      @reject {Error|ServiceError} - The error object.
-     *
-     * {ServiceCallback} optionalCallback(err, result, request, response)
-     *
-     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-     *
-     *                      {BackupManagementUsageList} [result]   - The deserialized result object if an error did not occur.
-     *                      See {@link BackupManagementUsageList} for more
-     *                      information.
-     *
-     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-     *
-     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
-     */
-    list(vaultName: string, resourceGroupName: string, options?: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.BackupManagementUsageList>;
-    list(vaultName: string, resourceGroupName: string, callback: ServiceCallback<models.BackupManagementUsageList>): void;
-    list(vaultName: string, resourceGroupName: string, options: { filter? : string, skipToken? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.BackupManagementUsageList>): void;
+    update(vaultName: string, resourceGroupName: string, parameters: models.BackupResourceConfigResource, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    update(vaultName: string, resourceGroupName: string, parameters: models.BackupResourceConfigResource, callback: ServiceCallback<void>): void;
+    update(vaultName: string, resourceGroupName: string, parameters: models.BackupResourceConfigResource, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
 }
 
 /**

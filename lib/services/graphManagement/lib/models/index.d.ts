@@ -32,6 +32,28 @@ export interface GraphError {
 
 /**
  * @class
+ * Initializes a new instance of the DirectoryObject class.
+ * @constructor
+ * Represents an Azure Active Directory object.
+ *
+ * @member {string} [objectId] The object ID.
+ * @member {date} [deletionTimestamp] The time at which the directory object
+ * was deleted.
+ * @member {string} objectType Polymorphic Discriminator
+ */
+export interface DirectoryObject {
+  readonly objectId?: string;
+  readonly deletionTimestamp?: Date;
+  objectType: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
+}
+
+/**
+ * @class
  * Initializes a new instance of the KeyCredential class.
  * @constructor
  * Active Directory Key Credential information.
@@ -43,6 +65,7 @@ export interface GraphError {
  * @member {string} [usage] Usage. Acceptable values are 'Verify' and 'Sign'.
  * @member {string} [type] Type. Acceptable values are 'AsymmetricX509Cert' and
  * 'Symmetric'.
+ * @member {buffer} [customKeyIdentifier] Custom Key Identifier
  */
 export interface KeyCredential {
   startDate?: Date;
@@ -51,6 +74,12 @@ export interface KeyCredential {
   keyId?: string;
   usage?: string;
   type?: string;
+  customKeyIdentifier?: Buffer;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -69,6 +98,11 @@ export interface PasswordCredential {
   endDate?: Date;
   keyId?: string;
   value?: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -87,6 +121,11 @@ export interface PasswordCredential {
 export interface ResourceAccess {
   id: string;
   type?: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -109,6 +148,40 @@ export interface ResourceAccess {
 export interface RequiredResourceAccess {
   resourceAccess: ResourceAccess[];
   resourceAppId?: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the AppRole class.
+ * @constructor
+ * @member {string} [id] Unique role identifier inside the appRoles collection.
+ * @member {array} [allowedMemberTypes] Specifies whether this app role
+ * definition can be assigned to users and groups by setting to 'User', or to
+ * other applications (that are accessing this application in daemon service
+ * scenarios) by setting to 'Application', or to both.
+ * @member {string} [description] Permission help text that appears in the
+ * admin app assignment and consent experiences.
+ * @member {string} [displayName] Display name for the permission that appears
+ * in the admin consent and app assignment experiences.
+ * @member {boolean} [isEnabled] When creating or updating a role definition,
+ * this must be set to true (which is the default). To delete a role, this must
+ * first be set to false. At that point, in a subsequent call, this role may be
+ * removed.
+ * @member {string} [value] Specifies the value of the roles claim that the
+ * application should expect in the authentication and access tokens.
+ */
+export interface AppRole {
+  id?: string;
+  allowedMemberTypes?: string[];
+  description?: string;
+  displayName?: string;
+  isEnabled?: boolean;
+  value?: string;
 }
 
 /**
@@ -117,6 +190,9 @@ export interface RequiredResourceAccess {
  * @constructor
  * Request parameters for creating a new application.
  *
+ * @member {array} [appRoles] The collection of application roles that an
+ * application may declare. These roles can be assigned to users, groups or
+ * service principals.
  * @member {boolean} availableToOtherTenants Whether the application is
  * available to other tenants.
  * @member {string} displayName The display name of the application.
@@ -134,6 +210,7 @@ export interface RequiredResourceAccess {
  * pre-configuration of required resource access drives the consent experience.
  */
 export interface ApplicationCreateParameters {
+  appRoles?: AppRole[];
   availableToOtherTenants: boolean;
   displayName: string;
   homepage?: string;
@@ -143,6 +220,11 @@ export interface ApplicationCreateParameters {
   passwordCredentials?: PasswordCredential[];
   oauth2AllowImplicitFlow?: boolean;
   requiredResourceAccess?: RequiredResourceAccess[];
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -151,6 +233,9 @@ export interface ApplicationCreateParameters {
  * @constructor
  * Request parameters for updating an existing application.
  *
+ * @member {array} [appRoles] The collection of application roles that an
+ * application may declare. These roles can be assigned to users, groups or
+ * service principals.
  * @member {boolean} [availableToOtherTenants] Whether the application is
  * available to other tenants
  * @member {string} [displayName] The display name of the application.
@@ -168,6 +253,7 @@ export interface ApplicationCreateParameters {
  * pre-configuration of required resource access drives the consent experience.
  */
 export interface ApplicationUpdateParameters {
+  appRoles?: AppRole[];
   availableToOtherTenants?: boolean;
   displayName?: string;
   homepage?: string;
@@ -177,6 +263,11 @@ export interface ApplicationUpdateParameters {
   passwordCredentials?: PasswordCredential[];
   oauth2AllowImplicitFlow?: boolean;
   requiredResourceAccess?: RequiredResourceAccess[];
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -185,9 +276,10 @@ export interface ApplicationUpdateParameters {
  * @constructor
  * Active Directory application information.
  *
- * @member {string} [objectId] The object ID.
- * @member {string} [objectType] The object type.
  * @member {string} [appId] The application ID.
+ * @member {array} [appRoles] The collection of application roles that an
+ * application may declare. These roles can be assigned to users, groups or
+ * service principals.
  * @member {array} [appPermissions] The application permissions.
  * @member {boolean} [availableToOtherTenants] Whether the application is be
  * available to other tenants.
@@ -197,11 +289,14 @@ export interface ApplicationUpdateParameters {
  * @member {string} [homepage] The home page of the application.
  * @member {boolean} [oauth2AllowImplicitFlow] Whether to allow implicit grant
  * flow for OAuth2
+ * @member {array} [requiredResourceAccess] Specifies resources that this
+ * application requires access to and the set of OAuth permission scopes and
+ * application roles that it needs under each of those resources. This
+ * pre-configuration of required resource access drives the consent experience.
  */
-export interface Application {
-  objectId?: string;
-  objectType?: string;
+export interface Application extends DirectoryObject {
   appId?: string;
+  appRoles?: AppRole[];
   appPermissions?: string[];
   availableToOtherTenants?: boolean;
   displayName?: string;
@@ -209,6 +304,28 @@ export interface Application {
   replyUrls?: string[];
   homepage?: string;
   oauth2AllowImplicitFlow?: boolean;
+  requiredResourceAccess?: RequiredResourceAccess[];
+}
+
+/**
+ * @class
+ * Initializes a new instance of the AddOwnerParameters class.
+ * @constructor
+ * Request parameters for adding a owner to an application.
+ *
+ * @member {string} url A owner object URL, such as
+ * "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd",
+ * where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and
+ * "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the owner (user,
+ * application, servicePrincipal, group) to be added.
+ */
+export interface AddOwnerParameters {
+  url: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -237,58 +354,6 @@ export interface PasswordCredentialsUpdateParameters {
 
 /**
  * @class
- * Initializes a new instance of the AADObject class.
- * @constructor
- * The properties of an Active Directory object.
- *
- * @member {string} [objectId] The ID of the object.
- * @member {string} [objectType] The type of AAD object.
- * @member {string} [displayName] The display name of the object.
- * @member {string} [userPrincipalName] The principal name of the object.
- * @member {string} [mail] The primary email address of the object.
- * @member {boolean} [mailEnabled] Whether the AAD object is mail-enabled.
- * @member {string} [mailNickname] The mail alias for the user.
- * @member {boolean} [securityEnabled] Whether the AAD object is
- * security-enabled.
- * @member {string} [signInName] The sign-in name of the object.
- * @member {array} [servicePrincipalNames] A collection of service principal
- * names associated with the object.
- * @member {string} [userType] The user type of the object.
- * @member {string} [usageLocation] A two letter country code (ISO standard
- * 3166). Required for users that will be assigned licenses due to legal
- * requirement to check for availability of services in countries. Examples
- * include: "US", "JP", and "GB".
- * @member {string} [appId] The application ID.
- * @member {array} [appPermissions] The application permissions.
- * @member {boolean} [availableToOtherTenants] Whether the application is be
- * available to other tenants.
- * @member {array} [identifierUris] A collection of URIs for the application.
- * @member {array} [replyUrls] A collection of reply URLs for the application.
- * @member {string} [homepage] The home page of the application.
- */
-export interface AADObject {
-  objectId?: string;
-  objectType?: string;
-  displayName?: string;
-  userPrincipalName?: string;
-  mail?: string;
-  mailEnabled?: boolean;
-  readonly mailNickname?: string;
-  securityEnabled?: boolean;
-  signInName?: string;
-  servicePrincipalNames?: string[];
-  userType?: string;
-  readonly usageLocation?: string;
-  readonly appId?: string;
-  readonly appPermissions?: string[];
-  readonly availableToOtherTenants?: boolean;
-  readonly identifierUris?: string[];
-  readonly replyUrls?: string[];
-  readonly homepage?: string;
-}
-
-/**
- * @class
  * Initializes a new instance of the GroupAddMemberParameters class.
  * @constructor
  * Request parameters for adding a member to a group.
@@ -301,6 +366,11 @@ export interface AADObject {
  */
 export interface GroupAddMemberParameters {
   url: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -315,6 +385,11 @@ export interface GroupAddMemberParameters {
 export interface GroupCreateParameters {
   displayName: string;
   mailNickname: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -323,16 +398,18 @@ export interface GroupCreateParameters {
  * @constructor
  * Active Directory group information.
  *
- * @member {string} [objectId] The object ID.
- * @member {string} [objectType] The object type.
  * @member {string} [displayName] The display name of the group.
+ * @member {boolean} [mailEnabled] Whether the group is mail-enabled. Must be
+ * false. This is because only pure security groups can be created using the
+ * Graph API.
+ * @member {string} [mailNickname] The mail alias for the group.
  * @member {boolean} [securityEnabled] Whether the group is security-enable.
  * @member {string} [mail] The primary email address of the group.
  */
-export interface ADGroup {
-  objectId?: string;
-  objectType?: string;
+export interface ADGroup extends DirectoryObject {
   displayName?: string;
+  mailEnabled?: boolean;
+  mailNickname?: string;
   securityEnabled?: boolean;
   mail?: string;
 }
@@ -349,6 +426,11 @@ export interface ADGroup {
  */
 export interface GroupGetMemberGroupsParameters {
   securityEnabledOnly: boolean;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -364,6 +446,11 @@ export interface GroupGetMemberGroupsParameters {
 export interface CheckGroupMembershipParameters {
   groupId: string;
   memberId: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -378,6 +465,11 @@ export interface CheckGroupMembershipParameters {
  */
 export interface CheckGroupMembershipResult {
   value?: boolean;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -386,17 +478,94 @@ export interface CheckGroupMembershipResult {
  * @constructor
  * Request parameters for creating a new service principal.
  *
+ * @member {boolean} [accountEnabled] Whether the account is enabled
  * @member {string} appId application Id
- * @member {boolean} accountEnabled Whether the account is enabled
+ * @member {boolean} [appRoleAssignmentRequired] Specifies whether an
+ * AppRoleAssignment to a user or group is required before Azure AD will issue
+ * a user or access token to the application.
+ * @member {string} [displayName] The display name for the service principal.
+ * @member {string} [errorUrl]
+ * @member {string} [homepage] The URL to the homepage of the associated
+ * application.
  * @member {array} [keyCredentials] A collection of KeyCredential objects.
  * @member {array} [passwordCredentials] A collection of PasswordCredential
  * objects
+ * @member {string} [publisherName] The display name of the tenant in which the
+ * associated application is specified.
+ * @member {array} [replyUrls] A collection of reply URLs for the service
+ * principal.
+ * @member {string} [samlMetadataUrl]
+ * @member {array} [servicePrincipalNames] A collection of service principal
+ * names.
+ * @member {array} [tags]
  */
 export interface ServicePrincipalCreateParameters {
+  accountEnabled?: boolean;
   appId: string;
-  accountEnabled: boolean;
+  appRoleAssignmentRequired?: boolean;
+  displayName?: string;
+  errorUrl?: string;
+  homepage?: string;
   keyCredentials?: KeyCredential[];
   passwordCredentials?: PasswordCredential[];
+  publisherName?: string;
+  replyUrls?: string[];
+  samlMetadataUrl?: string;
+  servicePrincipalNames?: string[];
+  tags?: string[];
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the ServicePrincipalUpdateParameters class.
+ * @constructor
+ * Request parameters for creating a new service principal.
+ *
+ * @member {boolean} [accountEnabled] Whether the account is enabled
+ * @member {string} [appId] application Id
+ * @member {boolean} [appRoleAssignmentRequired] Specifies whether an
+ * AppRoleAssignment to a user or group is required before Azure AD will issue
+ * a user or access token to the application.
+ * @member {string} [displayName] The display name for the service principal.
+ * @member {string} [errorUrl]
+ * @member {string} [homepage] The URL to the homepage of the associated
+ * application.
+ * @member {array} [keyCredentials] A collection of KeyCredential objects.
+ * @member {array} [passwordCredentials] A collection of PasswordCredential
+ * objects
+ * @member {string} [publisherName] The display name of the tenant in which the
+ * associated application is specified.
+ * @member {array} [replyUrls] A collection of reply URLs for the service
+ * principal.
+ * @member {string} [samlMetadataUrl]
+ * @member {array} [servicePrincipalNames] A collection of service principal
+ * names.
+ * @member {array} [tags]
+ */
+export interface ServicePrincipalUpdateParameters {
+  accountEnabled?: boolean;
+  appId?: string;
+  appRoleAssignmentRequired?: boolean;
+  displayName?: string;
+  errorUrl?: string;
+  homepage?: string;
+  keyCredentials?: KeyCredential[];
+  passwordCredentials?: PasswordCredential[];
+  publisherName?: string;
+  replyUrls?: string[];
+  samlMetadataUrl?: string;
+  servicePrincipalNames?: string[];
+  tags?: string[];
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -405,18 +574,18 @@ export interface ServicePrincipalCreateParameters {
  * @constructor
  * Active Directory service principal information.
  *
- * @member {string} [objectId] The object ID.
- * @member {string} [objectType] The object type.
  * @member {string} [displayName] The display name of the service principal.
  * @member {string} [appId] The application ID.
+ * @member {array} [appRoles] The collection of application roles that an
+ * application may declare. These roles can be assigned to users, groups or
+ * service principals.
  * @member {array} [servicePrincipalNames] A collection of service principal
  * names.
  */
-export interface ServicePrincipal {
-  objectId?: string;
-  objectType?: string;
+export interface ServicePrincipal extends DirectoryObject {
   displayName?: string;
   appId?: string;
+  appRoles?: AppRole[];
   servicePrincipalNames?: string[];
 }
 
@@ -433,6 +602,11 @@ export interface ServicePrincipal {
 export interface PasswordProfile {
   password: string;
   forceChangePasswordNextLogin?: boolean;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -459,6 +633,11 @@ export interface UserBase {
   givenName?: string;
   surname?: string;
   userType?: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -528,6 +707,11 @@ export interface UserUpdateParameters extends UserBase {
 export interface SignInName {
   type?: string;
   value?: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -536,23 +720,37 @@ export interface SignInName {
  * @constructor
  * Active Directory user information.
  *
+ * @member {string} [immutableId] This must be specified if you are using a
+ * federated domain for the user's userPrincipalName (UPN) property when
+ * creating a new user account. It is used to associate an on-premises Active
+ * Directory user account with their Azure AD user object.
+ * @member {string} [usageLocation] A two letter country code (ISO standard
+ * 3166). Required for users that will be assigned licenses due to legal
+ * requirement to check for availability of services in countries. Examples
+ * include: "US", "JP", and "GB".
+ * @member {string} [givenName] The given name for the user.
+ * @member {string} [surname] The user's surname (family name or last name).
+ * @member {string} [userType] A string value that can be used to classify user
+ * types in your directory, such as 'Member' and 'Guest'. Possible values
+ * include: 'Member', 'Guest'
  * @member {boolean} [accountEnabled] Whether the account is enabled.
  * @member {string} [displayName] The display name of the user.
  * @member {string} [userPrincipalName] The principal name of the user.
  * @member {string} [mailNickname] The mail alias for the user.
  * @member {string} [mail] The primary email address of the user.
- * @member {string} [objectId] The object ID.
- * @member {string} [objectType] The object type.
  * @member {array} [signInNames] The sign-in names of the user.
  */
-export interface User extends UserBase {
+export interface User extends DirectoryObject {
+  immutableId?: string;
+  usageLocation?: string;
+  givenName?: string;
+  surname?: string;
+  userType?: string;
   accountEnabled?: boolean;
   displayName?: string;
   userPrincipalName?: string;
   mailNickname?: string;
   mail?: string;
-  objectId?: string;
-  objectType?: string;
   signInNames?: SignInName[];
 }
 
@@ -568,6 +766,11 @@ export interface User extends UserBase {
  */
 export interface UserGetMemberGroupsParameters {
   securityEnabledOnly: boolean;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -578,13 +781,18 @@ export interface UserGetMemberGroupsParameters {
  *
  * @member {array} [objectIds] The requested object IDs.
  * @member {array} [types] The requested object types.
- * @member {boolean} includeDirectoryObjectReferences If true, also searches
+ * @member {boolean} [includeDirectoryObjectReferences] If true, also searches
  * for object IDs in the partner tenant.
  */
 export interface GetObjectsParameters {
   objectIds?: string[];
   types?: string[];
-  includeDirectoryObjectReferences: boolean;
+  includeDirectoryObjectReferences?: boolean;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
@@ -604,18 +812,50 @@ export interface Domain {
   readonly isDefault?: boolean;
   readonly isVerified?: boolean;
   name: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the Permissions class.
+ * @constructor
+ * @member {string} [odatatype]
+ * Microsoft.DirectoryServices.OAuth2PermissionGrant
+ * @member {string} [clientId] The objectId of the Service Principal associated
+ * with the app
+ * @member {string} [consentType] Typically set to AllPrincipals
+ * @member {object} [principalId] Set to null if AllPrincipals is set
+ * @member {string} [resourceId] Service Principal Id of the resource you want
+ * to grant
+ * @member {string} [scope] Typically set to user_impersonation
+ * @member {string} [startTime] Start time for TTL
+ * @member {string} [expiryTime] Expiry time for TTL
+ */
+export interface Permissions {
+  odatatype?: string;
+  clientId?: string;
+  consentType?: string;
+  principalId?: any;
+  resourceId?: string;
+  scope?: string;
+  startTime?: string;
+  expiryTime?: string;
 }
 
 
 /**
  * @class
- * Initializes a new instance of the GetObjectsResult class.
+ * Initializes a new instance of the DirectoryObjectListResult class.
  * @constructor
- * The response to an Active Directory object inquiry API request.
+ * DirectoryObject list operation result.
  *
  * @member {string} [odatanextLink] The URL to get the next set of results.
  */
-export interface GetObjectsResult extends Array<AADObject> {
+export interface DirectoryObjectListResult extends Array<DirectoryObject> {
   odatanextLink?: string;
 }
 

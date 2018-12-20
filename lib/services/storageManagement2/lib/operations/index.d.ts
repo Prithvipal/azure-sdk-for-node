@@ -221,13 +221,15 @@ export interface StorageAccounts {
      * @param {string} parameters.sku.name Gets or sets the sku name. Required for
      * account creation; optional for update. Note that in older versions, sku name
      * was called accountType. Possible values include: 'Standard_LRS',
-     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS',
+     * 'Premium_ZRS'
      *
      * @param {array} [parameters.sku.restrictions] The restrictions because of
      * which SKU cannot be used. This is empty if there are no restrictions.
      *
      * @param {string} parameters.kind Required. Indicates the type of storage
-     * account. Possible values include: 'Storage', 'StorageV2', 'BlobStorage'
+     * account. Possible values include: 'Storage', 'StorageV2', 'BlobStorage',
+     * 'FileStorage', 'BlockBlobStorage'
      *
      * @param {string} parameters.location Required. Gets or sets the location of
      * the resource. This will be one of the supported and registered Azure Geo
@@ -309,8 +311,14 @@ export interface StorageAccounts {
      * kind = BlobStorage. The access tier used for billing. Possible values
      * include: 'Hot', 'Cool'
      *
+     * @param {boolean} [parameters.enableAzureFilesAadIntegration] Enables Azure
+     * Files AAD Integration for SMB if sets to true.
+     *
      * @param {boolean} [parameters.enableHttpsTrafficOnly] Allows https traffic
      * only to storage service if sets to true.
+     *
+     * @param {boolean} [parameters.isHnsEnabled] Account HierarchicalNamespace
+     * enabled if sets to true.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -347,13 +355,15 @@ export interface StorageAccounts {
      * @param {string} parameters.sku.name Gets or sets the sku name. Required for
      * account creation; optional for update. Note that in older versions, sku name
      * was called accountType. Possible values include: 'Standard_LRS',
-     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS',
+     * 'Premium_ZRS'
      *
      * @param {array} [parameters.sku.restrictions] The restrictions because of
      * which SKU cannot be used. This is empty if there are no restrictions.
      *
      * @param {string} parameters.kind Required. Indicates the type of storage
-     * account. Possible values include: 'Storage', 'StorageV2', 'BlobStorage'
+     * account. Possible values include: 'Storage', 'StorageV2', 'BlobStorage',
+     * 'FileStorage', 'BlockBlobStorage'
      *
      * @param {string} parameters.location Required. Gets or sets the location of
      * the resource. This will be one of the supported and registered Azure Geo
@@ -435,8 +445,14 @@ export interface StorageAccounts {
      * kind = BlobStorage. The access tier used for billing. Possible values
      * include: 'Hot', 'Cool'
      *
+     * @param {boolean} [parameters.enableAzureFilesAadIntegration] Enables Azure
+     * Files AAD Integration for SMB if sets to true.
+     *
      * @param {boolean} [parameters.enableHttpsTrafficOnly] Allows https traffic
      * only to storage service if sets to true.
+     *
+     * @param {boolean} [parameters.isHnsEnabled] Account HierarchicalNamespace
+     * enabled if sets to true.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -625,13 +641,14 @@ export interface StorageAccounts {
      * account.
      *
      * @param {object} [parameters.sku] Gets or sets the SKU name. Note that the
-     * SKU name cannot be updated to Standard_ZRS or Premium_LRS, nor can accounts
-     * of those sku names be updated to any other value.
+     * SKU name cannot be updated to Standard_ZRS, Premium_LRS or Premium_ZRS, nor
+     * can accounts of those sku names be updated to any other value.
      *
      * @param {string} parameters.sku.name Gets or sets the sku name. Required for
      * account creation; optional for update. Note that in older versions, sku name
      * was called accountType. Possible values include: 'Standard_LRS',
-     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS',
+     * 'Premium_ZRS'
      *
      * @param {array} [parameters.sku.restrictions] The restrictions because of
      * which SKU cannot be used. This is empty if there are no restrictions.
@@ -692,6 +709,9 @@ export interface StorageAccounts {
      * kind = BlobStorage. The access tier used for billing. Possible values
      * include: 'Hot', 'Cool'
      *
+     * @param {boolean} [parameters.enableAzureFilesAadIntegration] Enables Azure
+     * Files AAD Integration for SMB if sets to true.
+     *
      * @param {boolean} [parameters.enableHttpsTrafficOnly] Allows https traffic
      * only to storage service if sets to true.
      *
@@ -714,7 +734,8 @@ export interface StorageAccounts {
      *
      * @param {string} [parameters.kind] Optional. Indicates the type of storage
      * account. Currently only StorageV2 value supported by server. Possible values
-     * include: 'Storage', 'StorageV2', 'BlobStorage'
+     * include: 'Storage', 'StorageV2', 'BlobStorage', 'FileStorage',
+     * 'BlockBlobStorage'
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -751,13 +772,14 @@ export interface StorageAccounts {
      * account.
      *
      * @param {object} [parameters.sku] Gets or sets the SKU name. Note that the
-     * SKU name cannot be updated to Standard_ZRS or Premium_LRS, nor can accounts
-     * of those sku names be updated to any other value.
+     * SKU name cannot be updated to Standard_ZRS, Premium_LRS or Premium_ZRS, nor
+     * can accounts of those sku names be updated to any other value.
      *
      * @param {string} parameters.sku.name Gets or sets the sku name. Required for
      * account creation; optional for update. Note that in older versions, sku name
      * was called accountType. Possible values include: 'Standard_LRS',
-     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS',
+     * 'Premium_ZRS'
      *
      * @param {array} [parameters.sku.restrictions] The restrictions because of
      * which SKU cannot be used. This is empty if there are no restrictions.
@@ -818,6 +840,9 @@ export interface StorageAccounts {
      * kind = BlobStorage. The access tier used for billing. Possible values
      * include: 'Hot', 'Cool'
      *
+     * @param {boolean} [parameters.enableAzureFilesAadIntegration] Enables Azure
+     * Files AAD Integration for SMB if sets to true.
+     *
      * @param {boolean} [parameters.enableHttpsTrafficOnly] Allows https traffic
      * only to storage service if sets to true.
      *
@@ -840,7 +865,8 @@ export interface StorageAccounts {
      *
      * @param {string} [parameters.kind] Optional. Indicates the type of storage
      * account. Currently only StorageV2 value supported by server. Possible values
-     * include: 'Storage', 'StorageV2', 'BlobStorage'
+     * include: 'Storage', 'StorageV2', 'BlobStorage', 'FileStorage',
+     * 'BlockBlobStorage'
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1276,8 +1302,8 @@ export interface StorageAccounts {
      * @param {string} parameters.canonicalizedResource The canonical path to the
      * signed resource.
      *
-     * @param {string} parameters.resource The signed services accessible with the
-     * service SAS. Possible values include: Blob (b), Container (c), File (f),
+     * @param {string} [parameters.resource] The signed services accessible with
+     * the service SAS. Possible values include: Blob (b), Container (c), File (f),
      * Share (s). Possible values include: 'b', 'c', 'f', 's'
      *
      * @param {string} [parameters.permissions] The signed permissions for the
@@ -1356,8 +1382,8 @@ export interface StorageAccounts {
      * @param {string} parameters.canonicalizedResource The canonical path to the
      * signed resource.
      *
-     * @param {string} parameters.resource The signed services accessible with the
-     * service SAS. Possible values include: Blob (b), Container (c), File (f),
+     * @param {string} [parameters.resource] The signed services accessible with
+     * the service SAS. Possible values include: Blob (b), Container (c), File (f),
      * Share (s). Possible values include: 'b', 'c', 'f', 's'
      *
      * @param {string} [parameters.permissions] The signed permissions for the
@@ -1441,6 +1467,76 @@ export interface StorageAccounts {
 
 
     /**
+     * Failover request can be triggered for a storage account in case of
+     * availability issues. The failover occurs from the storage account's primary
+     * cluster to secondary cluster for RA-GRS accounts. The secondary cluster will
+     * become primary after failover.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    failoverWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * Failover request can be triggered for a storage account in case of
+     * availability issues. The failover occurs from the storage account's primary
+     * cluster to secondary cluster for RA-GRS accounts. The secondary cluster will
+     * become primary after failover.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    failover(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    failover(resourceGroupName: string, accountName: string, callback: ServiceCallback<void>): void;
+    failover(resourceGroupName: string, accountName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+
+
+    /**
      * Asynchronously creates a new storage account with the specified parameters.
      * If an account is already created and a subsequent create request is issued
      * with different properties, the account properties will be updated. If an
@@ -1462,13 +1558,15 @@ export interface StorageAccounts {
      * @param {string} parameters.sku.name Gets or sets the sku name. Required for
      * account creation; optional for update. Note that in older versions, sku name
      * was called accountType. Possible values include: 'Standard_LRS',
-     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS',
+     * 'Premium_ZRS'
      *
      * @param {array} [parameters.sku.restrictions] The restrictions because of
      * which SKU cannot be used. This is empty if there are no restrictions.
      *
      * @param {string} parameters.kind Required. Indicates the type of storage
-     * account. Possible values include: 'Storage', 'StorageV2', 'BlobStorage'
+     * account. Possible values include: 'Storage', 'StorageV2', 'BlobStorage',
+     * 'FileStorage', 'BlockBlobStorage'
      *
      * @param {string} parameters.location Required. Gets or sets the location of
      * the resource. This will be one of the supported and registered Azure Geo
@@ -1550,8 +1648,14 @@ export interface StorageAccounts {
      * kind = BlobStorage. The access tier used for billing. Possible values
      * include: 'Hot', 'Cool'
      *
+     * @param {boolean} [parameters.enableAzureFilesAadIntegration] Enables Azure
+     * Files AAD Integration for SMB if sets to true.
+     *
      * @param {boolean} [parameters.enableHttpsTrafficOnly] Allows https traffic
      * only to storage service if sets to true.
+     *
+     * @param {boolean} [parameters.isHnsEnabled] Account HierarchicalNamespace
+     * enabled if sets to true.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1588,13 +1692,15 @@ export interface StorageAccounts {
      * @param {string} parameters.sku.name Gets or sets the sku name. Required for
      * account creation; optional for update. Note that in older versions, sku name
      * was called accountType. Possible values include: 'Standard_LRS',
-     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+     * 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS',
+     * 'Premium_ZRS'
      *
      * @param {array} [parameters.sku.restrictions] The restrictions because of
      * which SKU cannot be used. This is empty if there are no restrictions.
      *
      * @param {string} parameters.kind Required. Indicates the type of storage
-     * account. Possible values include: 'Storage', 'StorageV2', 'BlobStorage'
+     * account. Possible values include: 'Storage', 'StorageV2', 'BlobStorage',
+     * 'FileStorage', 'BlockBlobStorage'
      *
      * @param {string} parameters.location Required. Gets or sets the location of
      * the resource. This will be one of the supported and registered Azure Geo
@@ -1676,8 +1782,14 @@ export interface StorageAccounts {
      * kind = BlobStorage. The access tier used for billing. Possible values
      * include: 'Hot', 'Cool'
      *
+     * @param {boolean} [parameters.enableAzureFilesAadIntegration] Enables Azure
+     * Files AAD Integration for SMB if sets to true.
+     *
      * @param {boolean} [parameters.enableHttpsTrafficOnly] Allows https traffic
      * only to storage service if sets to true.
+     *
+     * @param {boolean} [parameters.isHnsEnabled] Account HierarchicalNamespace
+     * enabled if sets to true.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1709,20 +1821,92 @@ export interface StorageAccounts {
     beginCreate(resourceGroupName: string, accountName: string, parameters: models.StorageAccountCreateParameters, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.StorageAccount>;
     beginCreate(resourceGroupName: string, accountName: string, parameters: models.StorageAccountCreateParameters, callback: ServiceCallback<models.StorageAccount>): void;
     beginCreate(resourceGroupName: string, accountName: string, parameters: models.StorageAccountCreateParameters, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.StorageAccount>): void;
+
+
+    /**
+     * Failover request can be triggered for a storage account in case of
+     * availability issues. The failover occurs from the storage account's primary
+     * cluster to secondary cluster for RA-GRS accounts. The secondary cluster will
+     * become primary after failover.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    beginFailoverWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * Failover request can be triggered for a storage account in case of
+     * availability issues. The failover occurs from the storage account's primary
+     * cluster to secondary cluster for RA-GRS accounts. The secondary cluster will
+     * become primary after failover.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    beginFailover(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    beginFailover(resourceGroupName: string, accountName: string, callback: ServiceCallback<void>): void;
+    beginFailover(resourceGroupName: string, accountName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
 }
 
 /**
  * @class
- * UsageOperations
+ * Usages
  * __NOTE__: An instance of this class is automatically created for an
  * instance of the StorageManagementClient.
  */
-export interface UsageOperations {
+export interface Usages {
 
 
     /**
-     * Gets the current usage count and the limit for the resources under the
-     * subscription.
+     * Gets the current usage count and the limit for the resources of the location
+     * under the subscription.
+     *
+     * @param {string} location The location of the Azure Storage resource.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1735,11 +1919,13 @@ export interface UsageOperations {
      *
      * @reject {Error|ServiceError} - The error object.
      */
-    listWithHttpOperationResponse(options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.UsageListResult>>;
+    listByLocationWithHttpOperationResponse(location: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.UsageListResult>>;
 
     /**
-     * Gets the current usage count and the limit for the resources under the
-     * subscription.
+     * Gets the current usage count and the limit for the resources of the location
+     * under the subscription.
+     *
+     * @param {string} location The location of the Azure Storage resource.
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1768,7 +1954,1483 @@ export interface UsageOperations {
      *
      *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
      */
-    list(options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.UsageListResult>;
-    list(callback: ServiceCallback<models.UsageListResult>): void;
-    list(options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.UsageListResult>): void;
+    listByLocation(location: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.UsageListResult>;
+    listByLocation(location: string, callback: ServiceCallback<models.UsageListResult>): void;
+    listByLocation(location: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.UsageListResult>): void;
+}
+
+/**
+ * @class
+ * BlobServices
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the StorageManagementClient.
+ */
+export interface BlobServices {
+
+
+    /**
+     * Sets the properties of a storage account’s Blob service, including
+     * properties for Storage Analytics and CORS (Cross-Origin Resource Sharing)
+     * rules.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} parameters The properties of a storage account’s Blob
+     * service, including properties for Storage Analytics and CORS (Cross-Origin
+     * Resource Sharing) rules.
+     *
+     * @param {object} [parameters.cors] Specifies CORS rules for the Blob service.
+     * You can include up to five CorsRule elements in the request. If no CorsRule
+     * elements are included in the request body, all CORS rules will be deleted,
+     * and CORS will be disabled for the Blob service.
+     *
+     * @param {array} [parameters.cors.corsRules] The List of CORS rules. You can
+     * include up to five CorsRule elements in the request.
+     *
+     * @param {string} [parameters.defaultServiceVersion] DefaultServiceVersion
+     * indicates the default version to use for requests to the Blob service if an
+     * incoming request’s version is not specified. Possible values include version
+     * 2008-10-27 and all more recent versions.
+     *
+     * @param {object} [parameters.deleteRetentionPolicy] The blob service
+     * properties for soft delete.
+     *
+     * @param {boolean} [parameters.deleteRetentionPolicy.enabled] Indicates
+     * whether DeleteRetentionPolicy is enabled for the Blob service.
+     *
+     * @param {number} [parameters.deleteRetentionPolicy.days] Indicates the number
+     * of days that the deleted blob should be retained. The minimum specified
+     * value can be 1 and the maximum value can be 365.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<BlobServiceProperties>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    setServicePropertiesWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: models.BlobServiceProperties, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.BlobServiceProperties>>;
+
+    /**
+     * Sets the properties of a storage account’s Blob service, including
+     * properties for Storage Analytics and CORS (Cross-Origin Resource Sharing)
+     * rules.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} parameters The properties of a storage account’s Blob
+     * service, including properties for Storage Analytics and CORS (Cross-Origin
+     * Resource Sharing) rules.
+     *
+     * @param {object} [parameters.cors] Specifies CORS rules for the Blob service.
+     * You can include up to five CorsRule elements in the request. If no CorsRule
+     * elements are included in the request body, all CORS rules will be deleted,
+     * and CORS will be disabled for the Blob service.
+     *
+     * @param {array} [parameters.cors.corsRules] The List of CORS rules. You can
+     * include up to five CorsRule elements in the request.
+     *
+     * @param {string} [parameters.defaultServiceVersion] DefaultServiceVersion
+     * indicates the default version to use for requests to the Blob service if an
+     * incoming request’s version is not specified. Possible values include version
+     * 2008-10-27 and all more recent versions.
+     *
+     * @param {object} [parameters.deleteRetentionPolicy] The blob service
+     * properties for soft delete.
+     *
+     * @param {boolean} [parameters.deleteRetentionPolicy.enabled] Indicates
+     * whether DeleteRetentionPolicy is enabled for the Blob service.
+     *
+     * @param {number} [parameters.deleteRetentionPolicy.days] Indicates the number
+     * of days that the deleted blob should be retained. The minimum specified
+     * value can be 1 and the maximum value can be 365.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {BlobServiceProperties} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {BlobServiceProperties} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link BlobServiceProperties} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    setServiceProperties(resourceGroupName: string, accountName: string, parameters: models.BlobServiceProperties, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.BlobServiceProperties>;
+    setServiceProperties(resourceGroupName: string, accountName: string, parameters: models.BlobServiceProperties, callback: ServiceCallback<models.BlobServiceProperties>): void;
+    setServiceProperties(resourceGroupName: string, accountName: string, parameters: models.BlobServiceProperties, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.BlobServiceProperties>): void;
+
+
+    /**
+     * Gets the properties of a storage account’s Blob service, including
+     * properties for Storage Analytics and CORS (Cross-Origin Resource Sharing)
+     * rules.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<BlobServiceProperties>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getServicePropertiesWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.BlobServiceProperties>>;
+
+    /**
+     * Gets the properties of a storage account’s Blob service, including
+     * properties for Storage Analytics and CORS (Cross-Origin Resource Sharing)
+     * rules.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {BlobServiceProperties} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {BlobServiceProperties} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link BlobServiceProperties} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    getServiceProperties(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.BlobServiceProperties>;
+    getServiceProperties(resourceGroupName: string, accountName: string, callback: ServiceCallback<models.BlobServiceProperties>): void;
+    getServiceProperties(resourceGroupName: string, accountName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.BlobServiceProperties>): void;
+}
+
+/**
+ * @class
+ * BlobContainers
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the StorageManagementClient.
+ */
+export interface BlobContainers {
+
+
+    /**
+     * Lists all containers and does not support a prefix like data plane. Also SRP
+     * today does not return continuation token.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ListContainerItems>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ListContainerItems>>;
+
+    /**
+     * Lists all containers and does not support a prefix like data plane. Also SRP
+     * today does not return continuation token.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ListContainerItems} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ListContainerItems} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ListContainerItems} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    list(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ListContainerItems>;
+    list(resourceGroupName: string, accountName: string, callback: ServiceCallback<models.ListContainerItems>): void;
+    list(resourceGroupName: string, accountName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ListContainerItems>): void;
+
+
+    /**
+     * Creates a new container under the specified account as described by request
+     * body. The container resource includes metadata and properties for that
+     * container. It does not include a list of the blobs contained by the
+     * container.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.publicAccess] Specifies whether data in the
+     * container may be accessed publicly and the level of access. Possible values
+     * include: 'Container', 'Blob', 'None'
+     *
+     * @param {object} [options.metadata] A name-value pair to associate with the
+     * container as metadata.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<BlobContainer>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    createWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, options?: { publicAccess? : string, metadata? : { [propertyName: string]: string }, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.BlobContainer>>;
+
+    /**
+     * Creates a new container under the specified account as described by request
+     * body. The container resource includes metadata and properties for that
+     * container. It does not include a list of the blobs contained by the
+     * container.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.publicAccess] Specifies whether data in the
+     * container may be accessed publicly and the level of access. Possible values
+     * include: 'Container', 'Blob', 'None'
+     *
+     * @param {object} [options.metadata] A name-value pair to associate with the
+     * container as metadata.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {BlobContainer} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {BlobContainer} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link BlobContainer} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    create(resourceGroupName: string, accountName: string, containerName: string, options?: { publicAccess? : string, metadata? : { [propertyName: string]: string }, customHeaders? : { [headerName: string]: string; } }): Promise<models.BlobContainer>;
+    create(resourceGroupName: string, accountName: string, containerName: string, callback: ServiceCallback<models.BlobContainer>): void;
+    create(resourceGroupName: string, accountName: string, containerName: string, options: { publicAccess? : string, metadata? : { [propertyName: string]: string }, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.BlobContainer>): void;
+
+
+    /**
+     * Updates container properties as specified in request body. Properties not
+     * mentioned in the request will be unchanged. Update fails if the specified
+     * container doesn't already exist.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.publicAccess] Specifies whether data in the
+     * container may be accessed publicly and the level of access. Possible values
+     * include: 'Container', 'Blob', 'None'
+     *
+     * @param {object} [options.metadata] A name-value pair to associate with the
+     * container as metadata.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<BlobContainer>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    updateWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, options?: { publicAccess? : string, metadata? : { [propertyName: string]: string }, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.BlobContainer>>;
+
+    /**
+     * Updates container properties as specified in request body. Properties not
+     * mentioned in the request will be unchanged. Update fails if the specified
+     * container doesn't already exist.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.publicAccess] Specifies whether data in the
+     * container may be accessed publicly and the level of access. Possible values
+     * include: 'Container', 'Blob', 'None'
+     *
+     * @param {object} [options.metadata] A name-value pair to associate with the
+     * container as metadata.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {BlobContainer} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {BlobContainer} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link BlobContainer} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    update(resourceGroupName: string, accountName: string, containerName: string, options?: { publicAccess? : string, metadata? : { [propertyName: string]: string }, customHeaders? : { [headerName: string]: string; } }): Promise<models.BlobContainer>;
+    update(resourceGroupName: string, accountName: string, containerName: string, callback: ServiceCallback<models.BlobContainer>): void;
+    update(resourceGroupName: string, accountName: string, containerName: string, options: { publicAccess? : string, metadata? : { [propertyName: string]: string }, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.BlobContainer>): void;
+
+
+    /**
+     * Gets properties of a specified container.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<BlobContainer>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.BlobContainer>>;
+
+    /**
+     * Gets properties of a specified container.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {BlobContainer} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {BlobContainer} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link BlobContainer} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    get(resourceGroupName: string, accountName: string, containerName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.BlobContainer>;
+    get(resourceGroupName: string, accountName: string, containerName: string, callback: ServiceCallback<models.BlobContainer>): void;
+    get(resourceGroupName: string, accountName: string, containerName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.BlobContainer>): void;
+
+
+    /**
+     * Deletes specified container under its account.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * Deletes specified container under its account.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    deleteMethod(resourceGroupName: string, accountName: string, containerName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    deleteMethod(resourceGroupName: string, accountName: string, containerName: string, callback: ServiceCallback<void>): void;
+    deleteMethod(resourceGroupName: string, accountName: string, containerName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+
+
+    /**
+     * Sets legal hold tags. Setting the same tag results in an idempotent
+     * operation. SetLegalHold follows an append pattern and does not clear out the
+     * existing tags that are not specified in the request.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {array} tags Each tag should be 3 to 23 alphanumeric characters and
+     * is normalized to lower case at SRP.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<LegalHold>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    setLegalHoldWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, tags: string[], options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.LegalHold>>;
+
+    /**
+     * Sets legal hold tags. Setting the same tag results in an idempotent
+     * operation. SetLegalHold follows an append pattern and does not clear out the
+     * existing tags that are not specified in the request.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {array} tags Each tag should be 3 to 23 alphanumeric characters and
+     * is normalized to lower case at SRP.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {LegalHold} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {LegalHold} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link LegalHold} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    setLegalHold(resourceGroupName: string, accountName: string, containerName: string, tags: string[], options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.LegalHold>;
+    setLegalHold(resourceGroupName: string, accountName: string, containerName: string, tags: string[], callback: ServiceCallback<models.LegalHold>): void;
+    setLegalHold(resourceGroupName: string, accountName: string, containerName: string, tags: string[], options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.LegalHold>): void;
+
+
+    /**
+     * Clears legal hold tags. Clearing the same or non-existent tag results in an
+     * idempotent operation. ClearLegalHold clears out only the specified tags in
+     * the request.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {array} tags Each tag should be 3 to 23 alphanumeric characters and
+     * is normalized to lower case at SRP.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<LegalHold>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    clearLegalHoldWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, tags: string[], options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.LegalHold>>;
+
+    /**
+     * Clears legal hold tags. Clearing the same or non-existent tag results in an
+     * idempotent operation. ClearLegalHold clears out only the specified tags in
+     * the request.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {array} tags Each tag should be 3 to 23 alphanumeric characters and
+     * is normalized to lower case at SRP.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {LegalHold} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {LegalHold} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link LegalHold} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    clearLegalHold(resourceGroupName: string, accountName: string, containerName: string, tags: string[], options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.LegalHold>;
+    clearLegalHold(resourceGroupName: string, accountName: string, containerName: string, tags: string[], callback: ServiceCallback<models.LegalHold>): void;
+    clearLegalHold(resourceGroupName: string, accountName: string, containerName: string, tags: string[], options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.LegalHold>): void;
+
+
+    /**
+     * Creates or updates an unlocked immutability policy. ETag in If-Match is
+     * honored if given but not required for this operation.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {number} immutabilityPeriodSinceCreationInDays The immutability
+     * period for the blobs in the container since the policy creation, in days.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.ifMatch] The entity state (ETag) version of the
+     * immutability policy to update. A value of "*" can be used to apply the
+     * operation only if the immutability policy already exists. If omitted, this
+     * operation will always be applied.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ImmutabilityPolicy>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    createOrUpdateImmutabilityPolicyWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, immutabilityPeriodSinceCreationInDays: number, options?: { ifMatch? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ImmutabilityPolicy>>;
+
+    /**
+     * Creates or updates an unlocked immutability policy. ETag in If-Match is
+     * honored if given but not required for this operation.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {number} immutabilityPeriodSinceCreationInDays The immutability
+     * period for the blobs in the container since the policy creation, in days.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.ifMatch] The entity state (ETag) version of the
+     * immutability policy to update. A value of "*" can be used to apply the
+     * operation only if the immutability policy already exists. If omitted, this
+     * operation will always be applied.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ImmutabilityPolicy} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ImmutabilityPolicy} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ImmutabilityPolicy} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    createOrUpdateImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, immutabilityPeriodSinceCreationInDays: number, options?: { ifMatch? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.ImmutabilityPolicy>;
+    createOrUpdateImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, immutabilityPeriodSinceCreationInDays: number, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+    createOrUpdateImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, immutabilityPeriodSinceCreationInDays: number, options: { ifMatch? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+
+
+    /**
+     * Gets the existing immutability policy along with the corresponding ETag in
+     * response headers and body.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.ifMatch] The entity state (ETag) version of the
+     * immutability policy to update. A value of "*" can be used to apply the
+     * operation only if the immutability policy already exists. If omitted, this
+     * operation will always be applied.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ImmutabilityPolicy>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getImmutabilityPolicyWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, options?: { ifMatch? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ImmutabilityPolicy>>;
+
+    /**
+     * Gets the existing immutability policy along with the corresponding ETag in
+     * response headers and body.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {string} [options.ifMatch] The entity state (ETag) version of the
+     * immutability policy to update. A value of "*" can be used to apply the
+     * operation only if the immutability policy already exists. If omitted, this
+     * operation will always be applied.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ImmutabilityPolicy} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ImmutabilityPolicy} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ImmutabilityPolicy} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    getImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, options?: { ifMatch? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.ImmutabilityPolicy>;
+    getImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+    getImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, options: { ifMatch? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+
+
+    /**
+     * Aborts an unlocked immutability policy. The response of delete has
+     * immutabilityPeriodSinceCreationInDays set to 0. ETag in If-Match is required
+     * for this operation. Deleting a locked immutability policy is not allowed,
+     * only way is to delete the container after deleting all blobs inside the
+     * container.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {string} ifMatch The entity state (ETag) version of the immutability
+     * policy to update. A value of "*" can be used to apply the operation only if
+     * the immutability policy already exists. If omitted, this operation will
+     * always be applied.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ImmutabilityPolicy>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    deleteImmutabilityPolicyWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ImmutabilityPolicy>>;
+
+    /**
+     * Aborts an unlocked immutability policy. The response of delete has
+     * immutabilityPeriodSinceCreationInDays set to 0. ETag in If-Match is required
+     * for this operation. Deleting a locked immutability policy is not allowed,
+     * only way is to delete the container after deleting all blobs inside the
+     * container.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {string} ifMatch The entity state (ETag) version of the immutability
+     * policy to update. A value of "*" can be used to apply the operation only if
+     * the immutability policy already exists. If omitted, this operation will
+     * always be applied.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ImmutabilityPolicy} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ImmutabilityPolicy} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ImmutabilityPolicy} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    deleteImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ImmutabilityPolicy>;
+    deleteImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+    deleteImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+
+
+    /**
+     * Sets the ImmutabilityPolicy to Locked state. The only action allowed on a
+     * Locked policy is ExtendImmutabilityPolicy action. ETag in If-Match is
+     * required for this operation.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {string} ifMatch The entity state (ETag) version of the immutability
+     * policy to update. A value of "*" can be used to apply the operation only if
+     * the immutability policy already exists. If omitted, this operation will
+     * always be applied.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ImmutabilityPolicy>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    lockImmutabilityPolicyWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ImmutabilityPolicy>>;
+
+    /**
+     * Sets the ImmutabilityPolicy to Locked state. The only action allowed on a
+     * Locked policy is ExtendImmutabilityPolicy action. ETag in If-Match is
+     * required for this operation.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {string} ifMatch The entity state (ETag) version of the immutability
+     * policy to update. A value of "*" can be used to apply the operation only if
+     * the immutability policy already exists. If omitted, this operation will
+     * always be applied.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ImmutabilityPolicy} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ImmutabilityPolicy} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ImmutabilityPolicy} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    lockImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ImmutabilityPolicy>;
+    lockImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+    lockImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+
+
+    /**
+     * Extends the immutabilityPeriodSinceCreationInDays of a locked
+     * immutabilityPolicy. The only action allowed on a Locked policy will be this
+     * action. ETag in If-Match is required for this operation.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {string} ifMatch The entity state (ETag) version of the immutability
+     * policy to update. A value of "*" can be used to apply the operation only if
+     * the immutability policy already exists. If omitted, this operation will
+     * always be applied.
+     *
+     * @param {number} immutabilityPeriodSinceCreationInDays The immutability
+     * period for the blobs in the container since the policy creation, in days.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<ImmutabilityPolicy>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    extendImmutabilityPolicyWithHttpOperationResponse(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, immutabilityPeriodSinceCreationInDays: number, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ImmutabilityPolicy>>;
+
+    /**
+     * Extends the immutabilityPeriodSinceCreationInDays of a locked
+     * immutabilityPolicy. The only action allowed on a Locked policy will be this
+     * action. ETag in If-Match is required for this operation.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {string} containerName The name of the blob container within the
+     * specified storage account. Blob container names must be between 3 and 63
+     * characters in length and use numbers, lower-case letters and dash (-) only.
+     * Every dash (-) character must be immediately preceded and followed by a
+     * letter or number.
+     *
+     * @param {string} ifMatch The entity state (ETag) version of the immutability
+     * policy to update. A value of "*" can be used to apply the operation only if
+     * the immutability policy already exists. If omitted, this operation will
+     * always be applied.
+     *
+     * @param {number} immutabilityPeriodSinceCreationInDays The immutability
+     * period for the blobs in the container since the policy creation, in days.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {ImmutabilityPolicy} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {ImmutabilityPolicy} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link ImmutabilityPolicy} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    extendImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, immutabilityPeriodSinceCreationInDays: number, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ImmutabilityPolicy>;
+    extendImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, immutabilityPeriodSinceCreationInDays: number, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+    extendImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, immutabilityPeriodSinceCreationInDays: number, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ImmutabilityPolicy>): void;
+}
+
+/**
+ * @class
+ * ManagementPolicies
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the StorageManagementClient.
+ */
+export interface ManagementPolicies {
+
+
+    /**
+     * Gets the data policy rules associated with the specified storage account.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<StorageAccountManagementPolicies>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.StorageAccountManagementPolicies>>;
+
+    /**
+     * Gets the data policy rules associated with the specified storage account.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {StorageAccountManagementPolicies} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {StorageAccountManagementPolicies} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link StorageAccountManagementPolicies} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    get(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.StorageAccountManagementPolicies>;
+    get(resourceGroupName: string, accountName: string, callback: ServiceCallback<models.StorageAccountManagementPolicies>): void;
+    get(resourceGroupName: string, accountName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.StorageAccountManagementPolicies>): void;
+
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.policy] The Storage Account ManagementPolicies
+     * Rules, in JSON format. See more details in:
+     * https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<StorageAccountManagementPolicies>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    createOrUpdateWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: { policy? : any, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.StorageAccountManagementPolicies>>;
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.policy] The Storage Account ManagementPolicies
+     * Rules, in JSON format. See more details in:
+     * https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {StorageAccountManagementPolicies} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {StorageAccountManagementPolicies} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link StorageAccountManagementPolicies} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    createOrUpdate(resourceGroupName: string, accountName: string, options?: { policy? : any, customHeaders? : { [headerName: string]: string; } }): Promise<models.StorageAccountManagementPolicies>;
+    createOrUpdate(resourceGroupName: string, accountName: string, callback: ServiceCallback<models.StorageAccountManagementPolicies>): void;
+    createOrUpdate(resourceGroupName: string, accountName: string, options: { policy? : any, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.StorageAccountManagementPolicies>): void;
+
+
+    /**
+     * Deletes the data policy rules associated with the specified storage account.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * Deletes the data policy rules associated with the specified storage account.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription. The name is case insensitive.
+     *
+     * @param {string} accountName The name of the storage account within the
+     * specified resource group. Storage account names must be between 3 and 24
+     * characters in length and use numbers and lower-case letters only.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    deleteMethod(resourceGroupName: string, accountName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    deleteMethod(resourceGroupName: string, accountName: string, callback: ServiceCallback<void>): void;
+    deleteMethod(resourceGroupName: string, accountName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
 }

@@ -1,41 +1,45 @@
-# Microsoft Azure SDK for Node.js - ContainerRegistryManagement
+---
+uid: azure-arm-containerregistry
+summary: *content
+
+---
+**This SDK will be deprecated next year and will be replaced by a new TypeScript-based isomorphic SDK (found at https://github.com/Azure/azure-sdk-for-js) which works on Node.js and browsers.**
+## Microsoft Azure SDK for Node.js - ContainerRegistryManagementClient
 
 This project provides a Node.js package for accessing Azure. Right now it supports:
-- **Node.js version: 6.x.x or higher**
-- **API version: 2017-03-01**
+- **Node.js version 6.x.x or higher**
 
-## Features
+### Features
 
 
-## How to Install
+### How to Install
 
 ```bash
 npm install azure-arm-containerregistry
 ```
 
-## How to Use
+### How to use
 
-### Authentication, client creation and listing registries as an example
+#### Authentication, client creation, and get registries as an example.
 
- ```javascript
- const msRestAzure = require('ms-rest-azure');
- const ContainerRegistryManagement = require("azure-arm-containerregistry");
- 
- // Interactive Login
- // It provides a url and code that needs to be copied and pasted in a browser and authenticated over there. If successful, 
- // the user will get a DeviceTokenCredentials object.
- msRestAzure.interactiveLogin().then((credentials) => {
-   let client = new ContainerRegistryManagement(credentials, 'your-subscription-id');
-   client.registries.list().then((registries) => {
-     console.log('List of registries:');
-     console.dir(registries, {depth: null, colors: true});
-   });
- }).catch((err) => {
-   console.log('An error ocurred');
-   console.dir(err, {depth: null, colors: true});
- });
+```javascript
+const msRestAzure = require("ms-rest-azure");
+const ContainerRegistryManagementClient = require("azure-arm-containerregistry");
+msRestAzure.interactiveLogin().then((creds) => {
+  const subscriptionId = "<Subscription_Id>";
+  const client = new ContainerRegistryManagementClient(creds, subscriptionId);
+  const resourceGroupName = "testresourceGroupName";
+  const registryName = "testregistryName";
+
+  return client.registries.get(resourceGroupName, registryName).then((result) => {
+    console.log("The result is:");
+    console.log(result);
+  });
+}).catch((err) => {
+  console.log('An error occurred:');
+  console.dir(err, {depth: null, colors: true});
+});
 ```
-
-## Related projects
+### Related projects
 
 - [Microsoft Azure SDK for Node.js](https://github.com/Azure/azure-sdk-for-node)

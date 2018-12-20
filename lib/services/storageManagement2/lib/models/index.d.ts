@@ -26,11 +26,13 @@ export { CloudError } from 'ms-rest-azure';
  * @member {string} [resource] Resource on which the operation is performed
  * etc.
  * @member {string} [operation] Type of operation: get, read, delete, etc.
+ * @member {string} [description] Description of the operation.
  */
 export interface OperationDisplay {
   provider?: string;
   resource?: string;
   operation?: string;
+  description?: string;
 }
 
 /**
@@ -104,6 +106,7 @@ export interface ServiceSpecification {
  * performed etc.
  * @member {string} [display.operation] Type of operation: get, read, delete,
  * etc.
+ * @member {string} [display.description] Description of the operation.
  * @member {string} [origin] The origin of operations.
  * @member {object} [serviceSpecification] One property of operation, include
  * metric specifications.
@@ -159,9 +162,9 @@ export interface SKUCapability {
  * is set to location. This would be different locations where the SKU is
  * restricted.
  * @member {string} [reasonCode] The reason for the restriction. As of now this
- * can be “QuotaId” or “NotAvailableForSubscription”. Quota Id is set when the
+ * can be "QuotaId" or "NotAvailableForSubscription". Quota Id is set when the
  * SKU has requiredQuotas parameter as the subscription does not belong to that
- * quota. The “NotAvailableForSubscription” is related to capacity at DC.
+ * quota. The "NotAvailableForSubscription" is related to capacity at DC.
  * Possible values include: 'QuotaId', 'NotAvailableForSubscription'
  */
 export interface Restriction {
@@ -179,13 +182,14 @@ export interface Restriction {
  * @member {string} name Gets or sets the sku name. Required for account
  * creation; optional for update. Note that in older versions, sku name was
  * called accountType. Possible values include: 'Standard_LRS', 'Standard_GRS',
- * 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+ * 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS', 'Premium_ZRS'
  * @member {string} [tier] Gets the sku tier. This is based on the SKU name.
  * Possible values include: 'Standard', 'Premium'
  * @member {string} [resourceType] The type of the resource, usually it is
  * 'storageAccounts'.
  * @member {string} [kind] Indicates the type of storage account. Possible
- * values include: 'Storage', 'StorageV2', 'BlobStorage'
+ * values include: 'Storage', 'StorageV2', 'BlobStorage', 'FileStorage',
+ * 'BlockBlobStorage'
  * @member {array} [locations] The set of locations that the SKU is available.
  * This will be supported and registered Azure Geo Regions (e.g. West US, East
  * US, Southeast Asia, etc.).
@@ -461,13 +465,14 @@ export interface Identity {
  * @member {string} [sku.name] Gets or sets the sku name. Required for account
  * creation; optional for update. Note that in older versions, sku name was
  * called accountType. Possible values include: 'Standard_LRS', 'Standard_GRS',
- * 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+ * 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS', 'Premium_ZRS'
  * @member {string} [sku.tier] Gets the sku tier. This is based on the SKU
  * name. Possible values include: 'Standard', 'Premium'
  * @member {string} [sku.resourceType] The type of the resource, usually it is
  * 'storageAccounts'.
  * @member {string} [sku.kind] Indicates the type of storage account. Possible
- * values include: 'Storage', 'StorageV2', 'BlobStorage'
+ * values include: 'Storage', 'StorageV2', 'BlobStorage', 'FileStorage',
+ * 'BlockBlobStorage'
  * @member {array} [sku.locations] The set of locations that the SKU is
  * available. This will be supported and registered Azure Geo Regions (e.g.
  * West US, East US, Southeast Asia, etc.).
@@ -477,7 +482,8 @@ export interface Identity {
  * @member {array} [sku.restrictions] The restrictions because of which SKU
  * cannot be used. This is empty if there are no restrictions.
  * @member {string} kind Required. Indicates the type of storage account.
- * Possible values include: 'Storage', 'StorageV2', 'BlobStorage'
+ * Possible values include: 'Storage', 'StorageV2', 'BlobStorage',
+ * 'FileStorage', 'BlockBlobStorage'
  * @member {string} location Required. Gets or sets the location of the
  * resource. This will be one of the supported and registered Azure Geo Regions
  * (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource
@@ -564,8 +570,12 @@ export interface Identity {
  * @member {string} [accessTier] Required for storage accounts where kind =
  * BlobStorage. The access tier used for billing. Possible values include:
  * 'Hot', 'Cool'
+ * @member {boolean} [enableAzureFilesAadIntegration] Enables Azure Files AAD
+ * Integration for SMB if sets to true.
  * @member {boolean} [enableHttpsTrafficOnly] Allows https traffic only to
- * storage service if sets to true. Default value: false .
+ * storage service if sets to true.
+ * @member {boolean} [isHnsEnabled] Account HierarchicalNamespace enabled if
+ * sets to true.
  */
 export interface StorageAccountCreateParameters {
   sku: Sku;
@@ -577,47 +587,62 @@ export interface StorageAccountCreateParameters {
   encryption?: Encryption;
   networkRuleSet?: NetworkRuleSet;
   accessTier?: string;
+  enableAzureFilesAadIntegration?: boolean;
   enableHttpsTrafficOnly?: boolean;
+  isHnsEnabled?: boolean;
 }
 
 /**
  * @class
  * Initializes a new instance of the Endpoints class.
  * @constructor
- * The URIs that are used to perform a retrieval of a public blob, queue, or
- * table object.
+ * The URIs that are used to perform a retrieval of a public blob, queue,
+ * table, web or dfs object.
  *
  * @member {string} [blob] Gets the blob endpoint.
  * @member {string} [queue] Gets the queue endpoint.
  * @member {string} [table] Gets the table endpoint.
  * @member {string} [file] Gets the file endpoint.
+ * @member {string} [web] Gets the web endpoint.
+ * @member {string} [dfs] Gets the dfs endpoint.
  */
 export interface Endpoints {
   readonly blob?: string;
   readonly queue?: string;
   readonly table?: string;
   readonly file?: string;
+  readonly web?: string;
+  readonly dfs?: string;
 }
 
 /**
  * @class
  * Initializes a new instance of the Resource class.
  * @constructor
- * Describes a storage resource.
- *
- * @member {string} [id] Resource Id
- * @member {string} [name] Resource name
- * @member {string} [type] Resource type
- * @member {string} [location] Resource location
- * @member {object} [tags] Tags assigned to a resource; can be used for viewing
- * and grouping a resource (across resource groups).
+ * @member {string} [id] Fully qualified resource Id for the resource. Ex -
+ * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+ * @member {string} [name] The name of the resource
+ * @member {string} [type] The type of the resource. Ex-
+ * Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
  */
 export interface Resource extends BaseResource {
   readonly id?: string;
   readonly name?: string;
   readonly type?: string;
-  location?: string;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the TrackedResource class.
+ * @constructor
+ * The resource model definition for a ARM tracked top level resource
+ *
+ * @member {object} [tags] Resource tags.
+ * @member {string} location The geo-location where the resource lives
+ */
+export interface TrackedResource extends Resource {
   tags?: { [propertyName: string]: string };
+  location: string;
 }
 
 /**
@@ -630,13 +655,14 @@ export interface Resource extends BaseResource {
  * @member {string} [sku.name] Gets or sets the sku name. Required for account
  * creation; optional for update. Note that in older versions, sku name was
  * called accountType. Possible values include: 'Standard_LRS', 'Standard_GRS',
- * 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+ * 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS', 'Premium_ZRS'
  * @member {string} [sku.tier] Gets the sku tier. This is based on the SKU
  * name. Possible values include: 'Standard', 'Premium'
  * @member {string} [sku.resourceType] The type of the resource, usually it is
  * 'storageAccounts'.
  * @member {string} [sku.kind] Indicates the type of storage account. Possible
- * values include: 'Storage', 'StorageV2', 'BlobStorage'
+ * values include: 'Storage', 'StorageV2', 'BlobStorage', 'FileStorage',
+ * 'BlockBlobStorage'
  * @member {array} [sku.locations] The set of locations that the SKU is
  * available. This will be supported and registered Azure Geo Regions (e.g.
  * West US, East US, Southeast Asia, etc.).
@@ -646,7 +672,7 @@ export interface Resource extends BaseResource {
  * @member {array} [sku.restrictions] The restrictions because of which SKU
  * cannot be used. This is empty if there are no restrictions.
  * @member {string} [kind] Gets the Kind. Possible values include: 'Storage',
- * 'StorageV2', 'BlobStorage'
+ * 'StorageV2', 'BlobStorage', 'FileStorage', 'BlockBlobStorage'
  * @member {object} [identity] The identity of the resource.
  * @member {string} [identity.principalId] The principal ID of resource
  * identity.
@@ -661,6 +687,8 @@ export interface Resource extends BaseResource {
  * @member {string} [primaryEndpoints.queue] Gets the queue endpoint.
  * @member {string} [primaryEndpoints.table] Gets the table endpoint.
  * @member {string} [primaryEndpoints.file] Gets the file endpoint.
+ * @member {string} [primaryEndpoints.web] Gets the web endpoint.
+ * @member {string} [primaryEndpoints.dfs] Gets the dfs endpoint.
  * @member {string} [primaryLocation] Gets the location of the primary data
  * center for the storage account.
  * @member {string} [statusOfPrimary] Gets the status indicating whether the
@@ -695,6 +723,8 @@ export interface Resource extends BaseResource {
  * @member {string} [secondaryEndpoints.queue] Gets the queue endpoint.
  * @member {string} [secondaryEndpoints.table] Gets the table endpoint.
  * @member {string} [secondaryEndpoints.file] Gets the file endpoint.
+ * @member {string} [secondaryEndpoints.web] Gets the web endpoint.
+ * @member {string} [secondaryEndpoints.dfs] Gets the dfs endpoint.
  * @member {object} [encryption] Gets the encryption settings on the account.
  * If unspecified, the account is unencrypted.
  * @member {object} [encryption.services] List of services which support
@@ -745,8 +775,10 @@ export interface Resource extends BaseResource {
  * @member {string} [accessTier] Required for storage accounts where kind =
  * BlobStorage. The access tier used for billing. Possible values include:
  * 'Hot', 'Cool'
+ * @member {boolean} [enableAzureFilesAadIntegration] Enables Azure Files AAD
+ * Integration for SMB if sets to true.
  * @member {boolean} [enableHttpsTrafficOnly] Allows https traffic only to
- * storage service if sets to true. Default value: false .
+ * storage service if sets to true.
  * @member {object} [networkRuleSet] Network rule set
  * @member {string} [networkRuleSet.bypass] Specifies whether traffic is
  * bypassed for Logging/Metrics/AzureServices. Possible values are any
@@ -759,8 +791,12 @@ export interface Resource extends BaseResource {
  * @member {string} [networkRuleSet.defaultAction] Specifies the default action
  * of allow or deny when no other rules match. Possible values include:
  * 'Allow', 'Deny'
+ * @member {boolean} [isHnsEnabled] Account HierarchicalNamespace enabled if
+ * sets to true.
+ * @member {boolean} [failoverInProgress] If the failover is in progress, the
+ * value will be true, otherwise, it will be null.
  */
-export interface StorageAccount extends Resource {
+export interface StorageAccount extends TrackedResource {
   readonly sku?: Sku;
   readonly kind?: string;
   identity?: Identity;
@@ -776,8 +812,11 @@ export interface StorageAccount extends Resource {
   readonly secondaryEndpoints?: Endpoints;
   readonly encryption?: Encryption;
   readonly accessTier?: string;
+  enableAzureFilesAadIntegration?: boolean;
   enableHttpsTrafficOnly?: boolean;
   readonly networkRuleSet?: NetworkRuleSet;
+  isHnsEnabled?: boolean;
+  readonly failoverInProgress?: boolean;
 }
 
 /**
@@ -831,18 +870,19 @@ export interface StorageAccountRegenerateKeyParameters {
  * properties.
  *
  * @member {object} [sku] Gets or sets the SKU name. Note that the SKU name
- * cannot be updated to Standard_ZRS or Premium_LRS, nor can accounts of those
- * sku names be updated to any other value.
+ * cannot be updated to Standard_ZRS, Premium_LRS or Premium_ZRS, nor can
+ * accounts of those sku names be updated to any other value.
  * @member {string} [sku.name] Gets or sets the sku name. Required for account
  * creation; optional for update. Note that in older versions, sku name was
  * called accountType. Possible values include: 'Standard_LRS', 'Standard_GRS',
- * 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS'
+ * 'Standard_RAGRS', 'Standard_ZRS', 'Premium_LRS', 'Premium_ZRS'
  * @member {string} [sku.tier] Gets the sku tier. This is based on the SKU
  * name. Possible values include: 'Standard', 'Premium'
  * @member {string} [sku.resourceType] The type of the resource, usually it is
  * 'storageAccounts'.
  * @member {string} [sku.kind] Indicates the type of storage account. Possible
- * values include: 'Storage', 'StorageV2', 'BlobStorage'
+ * values include: 'Storage', 'StorageV2', 'BlobStorage', 'FileStorage',
+ * 'BlockBlobStorage'
  * @member {array} [sku.locations] The set of locations that the SKU is
  * available. This will be supported and registered Azure Geo Regions (e.g.
  * West US, East US, Southeast Asia, etc.).
@@ -919,8 +959,10 @@ export interface StorageAccountRegenerateKeyParameters {
  * @member {string} [accessTier] Required for storage accounts where kind =
  * BlobStorage. The access tier used for billing. Possible values include:
  * 'Hot', 'Cool'
+ * @member {boolean} [enableAzureFilesAadIntegration] Enables Azure Files AAD
+ * Integration for SMB if sets to true.
  * @member {boolean} [enableHttpsTrafficOnly] Allows https traffic only to
- * storage service if sets to true. Default value: false .
+ * storage service if sets to true.
  * @member {object} [networkRuleSet] Network rule set
  * @member {string} [networkRuleSet.bypass] Specifies whether traffic is
  * bypassed for Logging/Metrics/AzureServices. Possible values are any
@@ -935,7 +977,7 @@ export interface StorageAccountRegenerateKeyParameters {
  * 'Allow', 'Deny'
  * @member {string} [kind] Optional. Indicates the type of storage account.
  * Currently only StorageV2 value supported by server. Possible values include:
- * 'Storage', 'StorageV2', 'BlobStorage'
+ * 'Storage', 'StorageV2', 'BlobStorage', 'FileStorage', 'BlockBlobStorage'
  */
 export interface StorageAccountUpdateParameters {
   sku?: Sku;
@@ -944,6 +986,7 @@ export interface StorageAccountUpdateParameters {
   customDomain?: CustomDomain;
   encryption?: Encryption;
   accessTier?: string;
+  enableAzureFilesAadIntegration?: boolean;
   enableHttpsTrafficOnly?: boolean;
   networkRuleSet?: NetworkRuleSet;
   kind?: string;
@@ -1048,7 +1091,7 @@ export interface ListAccountSasResponse {
  *
  * @member {string} canonicalizedResource The canonical path to the signed
  * resource.
- * @member {string} resource The signed services accessible with the service
+ * @member {string} [resource] The signed services accessible with the service
  * SAS. Possible values include: Blob (b), Container (c), File (f), Share (s).
  * Possible values include: 'b', 'c', 'f', 's'
  * @member {string} [permissions] The signed permissions for the service SAS.
@@ -1084,7 +1127,7 @@ export interface ListAccountSasResponse {
  */
 export interface ServiceSasParameters {
   canonicalizedResource: string;
-  resource: string;
+  resource?: string;
   permissions?: string;
   iPAddressOrRange?: string;
   protocols?: string;
@@ -1114,6 +1157,417 @@ export interface ServiceSasParameters {
  */
 export interface ListServiceSasResponse {
   readonly serviceSasToken?: string;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the ProxyResource class.
+ * @constructor
+ * The resource model definition for a ARM proxy resource. It will have
+ * everything other than required location and tags
+ *
+ */
+export interface ProxyResource extends Resource {
+}
+
+/**
+ * @class
+ * Initializes a new instance of the AzureEntityResource class.
+ * @constructor
+ * The resource model definition for a Azure Resource Manager resource with an
+ * etag.
+ *
+ * @member {string} [etag] Resource Etag.
+ */
+export interface AzureEntityResource extends Resource {
+  readonly etag?: string;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the UpdateHistoryProperty class.
+ * @constructor
+ * An update history of the ImmutabilityPolicy of a blob container.
+ *
+ * @member {string} [update] The ImmutabilityPolicy update type of a blob
+ * container, possible values include: put, lock and extend. Possible values
+ * include: 'put', 'lock', 'extend'
+ * @member {number} [immutabilityPeriodSinceCreationInDays] The immutability
+ * period for the blobs in the container since the policy creation, in days.
+ * @member {date} [timestamp] Returns the date and time the ImmutabilityPolicy
+ * was updated.
+ * @member {string} [objectIdentifier] Returns the Object ID of the user who
+ * updated the ImmutabilityPolicy.
+ * @member {string} [tenantId] Returns the Tenant ID that issued the token for
+ * the user who updated the ImmutabilityPolicy.
+ * @member {string} [upn] Returns the User Principal Name of the user who
+ * updated the ImmutabilityPolicy.
+ */
+export interface UpdateHistoryProperty {
+  readonly update?: string;
+  readonly immutabilityPeriodSinceCreationInDays?: number;
+  readonly timestamp?: Date;
+  readonly objectIdentifier?: string;
+  readonly tenantId?: string;
+  readonly upn?: string;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the ImmutabilityPolicyProperties class.
+ * @constructor
+ * The properties of an ImmutabilityPolicy of a blob container.
+ *
+ * @member {number} immutabilityPeriodSinceCreationInDays The immutability
+ * period for the blobs in the container since the policy creation, in days.
+ * @member {string} [state] The ImmutabilityPolicy state of a blob container,
+ * possible values include: Locked and Unlocked. Possible values include:
+ * 'Locked', 'Unlocked'
+ * @member {string} [etag] ImmutabilityPolicy Etag.
+ * @member {array} [updateHistory] The ImmutabilityPolicy update history of the
+ * blob container.
+ */
+export interface ImmutabilityPolicyProperties {
+  immutabilityPeriodSinceCreationInDays: number;
+  readonly state?: string;
+  readonly etag?: string;
+  readonly updateHistory?: UpdateHistoryProperty[];
+}
+
+/**
+ * @class
+ * Initializes a new instance of the TagProperty class.
+ * @constructor
+ * A tag of the LegalHold of a blob container.
+ *
+ * @member {string} [tag] The tag value.
+ * @member {date} [timestamp] Returns the date and time the tag was added.
+ * @member {string} [objectIdentifier] Returns the Object ID of the user who
+ * added the tag.
+ * @member {string} [tenantId] Returns the Tenant ID that issued the token for
+ * the user who added the tag.
+ * @member {string} [upn] Returns the User Principal Name of the user who added
+ * the tag.
+ */
+export interface TagProperty {
+  readonly tag?: string;
+  readonly timestamp?: Date;
+  readonly objectIdentifier?: string;
+  readonly tenantId?: string;
+  readonly upn?: string;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the LegalHoldProperties class.
+ * @constructor
+ * The LegalHold property of a blob container.
+ *
+ * @member {boolean} [hasLegalHold] The hasLegalHold public property is set to
+ * true by SRP if there are at least one existing tag. The hasLegalHold public
+ * property is set to false by SRP if all existing legal hold tags are cleared
+ * out. There can be a maximum of 1000 blob containers with hasLegalHold=true
+ * for a given account.
+ * @member {array} [tags] The list of LegalHold tags of a blob container.
+ */
+export interface LegalHoldProperties {
+  readonly hasLegalHold?: boolean;
+  tags?: TagProperty[];
+}
+
+/**
+ * @class
+ * Initializes a new instance of the BlobContainer class.
+ * @constructor
+ * Properties of the blob container, including Id, resource name, resource
+ * type, Etag.
+ *
+ * @member {string} [publicAccess] Specifies whether data in the container may
+ * be accessed publicly and the level of access. Possible values include:
+ * 'Container', 'Blob', 'None'
+ * @member {date} [lastModifiedTime] Returns the date and time the container
+ * was last modified.
+ * @member {string} [leaseStatus] The lease status of the container. Possible
+ * values include: 'Locked', 'Unlocked'
+ * @member {string} [leaseState] Lease state of the container. Possible values
+ * include: 'Available', 'Leased', 'Expired', 'Breaking', 'Broken'
+ * @member {string} [leaseDuration] Specifies whether the lease on a container
+ * is of infinite or fixed duration, only when the container is leased.
+ * Possible values include: 'Infinite', 'Fixed'
+ * @member {object} [metadata] A name-value pair to associate with the
+ * container as metadata.
+ * @member {object} [immutabilityPolicy] The ImmutabilityPolicy property of the
+ * container.
+ * @member {number} [immutabilityPolicy.immutabilityPeriodSinceCreationInDays]
+ * The immutability period for the blobs in the container since the policy
+ * creation, in days.
+ * @member {string} [immutabilityPolicy.state] The ImmutabilityPolicy state of
+ * a blob container, possible values include: Locked and Unlocked. Possible
+ * values include: 'Locked', 'Unlocked'
+ * @member {string} [immutabilityPolicy.etag] ImmutabilityPolicy Etag.
+ * @member {array} [immutabilityPolicy.updateHistory] The ImmutabilityPolicy
+ * update history of the blob container.
+ * @member {object} [legalHold] The LegalHold property of the container.
+ * @member {boolean} [legalHold.hasLegalHold] The hasLegalHold public property
+ * is set to true by SRP if there are at least one existing tag. The
+ * hasLegalHold public property is set to false by SRP if all existing legal
+ * hold tags are cleared out. There can be a maximum of 1000 blob containers
+ * with hasLegalHold=true for a given account.
+ * @member {array} [legalHold.tags] The list of LegalHold tags of a blob
+ * container.
+ * @member {boolean} [hasLegalHold] The hasLegalHold public property is set to
+ * true by SRP if there are at least one existing tag. The hasLegalHold public
+ * property is set to false by SRP if all existing legal hold tags are cleared
+ * out. There can be a maximum of 1000 blob containers with hasLegalHold=true
+ * for a given account.
+ * @member {boolean} [hasImmutabilityPolicy] The hasImmutabilityPolicy public
+ * property is set to true by SRP if ImmutabilityPolicy has been created for
+ * this container. The hasImmutabilityPolicy public property is set to false by
+ * SRP if ImmutabilityPolicy has not been created for this container.
+ */
+export interface BlobContainer extends AzureEntityResource {
+  publicAccess?: string;
+  readonly lastModifiedTime?: Date;
+  readonly leaseStatus?: string;
+  readonly leaseState?: string;
+  readonly leaseDuration?: string;
+  metadata?: { [propertyName: string]: string };
+  readonly immutabilityPolicy?: ImmutabilityPolicyProperties;
+  readonly legalHold?: LegalHoldProperties;
+  readonly hasLegalHold?: boolean;
+  readonly hasImmutabilityPolicy?: boolean;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the ImmutabilityPolicy class.
+ * @constructor
+ * The ImmutabilityPolicy property of a blob container, including Id, resource
+ * name, resource type, Etag.
+ *
+ * @member {number} immutabilityPeriodSinceCreationInDays The immutability
+ * period for the blobs in the container since the policy creation, in days.
+ * @member {string} [state] The ImmutabilityPolicy state of a blob container,
+ * possible values include: Locked and Unlocked. Possible values include:
+ * 'Locked', 'Unlocked'
+ */
+export interface ImmutabilityPolicy extends AzureEntityResource {
+  immutabilityPeriodSinceCreationInDays: number;
+  readonly state?: string;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the LegalHold class.
+ * @constructor
+ * The LegalHold property of a blob container.
+ *
+ * @member {boolean} [hasLegalHold] The hasLegalHold public property is set to
+ * true by SRP if there are at least one existing tag. The hasLegalHold public
+ * property is set to false by SRP if all existing legal hold tags are cleared
+ * out. There can be a maximum of 1000 blob containers with hasLegalHold=true
+ * for a given account.
+ * @member {array} tags Each tag should be 3 to 23 alphanumeric characters and
+ * is normalized to lower case at SRP.
+ */
+export interface LegalHold {
+  readonly hasLegalHold?: boolean;
+  tags: string[];
+}
+
+/**
+ * @class
+ * Initializes a new instance of the ListContainerItem class.
+ * @constructor
+ * The blob container properties be listed out.
+ *
+ * @member {string} [publicAccess] Specifies whether data in the container may
+ * be accessed publicly and the level of access. Possible values include:
+ * 'Container', 'Blob', 'None'
+ * @member {date} [lastModifiedTime] Returns the date and time the container
+ * was last modified.
+ * @member {string} [leaseStatus] The lease status of the container. Possible
+ * values include: 'Locked', 'Unlocked'
+ * @member {string} [leaseState] Lease state of the container. Possible values
+ * include: 'Available', 'Leased', 'Expired', 'Breaking', 'Broken'
+ * @member {string} [leaseDuration] Specifies whether the lease on a container
+ * is of infinite or fixed duration, only when the container is leased.
+ * Possible values include: 'Infinite', 'Fixed'
+ * @member {object} [metadata] A name-value pair to associate with the
+ * container as metadata.
+ * @member {object} [immutabilityPolicy] The ImmutabilityPolicy property of the
+ * container.
+ * @member {number} [immutabilityPolicy.immutabilityPeriodSinceCreationInDays]
+ * The immutability period for the blobs in the container since the policy
+ * creation, in days.
+ * @member {string} [immutabilityPolicy.state] The ImmutabilityPolicy state of
+ * a blob container, possible values include: Locked and Unlocked. Possible
+ * values include: 'Locked', 'Unlocked'
+ * @member {string} [immutabilityPolicy.etag] ImmutabilityPolicy Etag.
+ * @member {array} [immutabilityPolicy.updateHistory] The ImmutabilityPolicy
+ * update history of the blob container.
+ * @member {object} [legalHold] The LegalHold property of the container.
+ * @member {boolean} [legalHold.hasLegalHold] The hasLegalHold public property
+ * is set to true by SRP if there are at least one existing tag. The
+ * hasLegalHold public property is set to false by SRP if all existing legal
+ * hold tags are cleared out. There can be a maximum of 1000 blob containers
+ * with hasLegalHold=true for a given account.
+ * @member {array} [legalHold.tags] The list of LegalHold tags of a blob
+ * container.
+ * @member {boolean} [hasLegalHold] The hasLegalHold public property is set to
+ * true by SRP if there are at least one existing tag. The hasLegalHold public
+ * property is set to false by SRP if all existing legal hold tags are cleared
+ * out. There can be a maximum of 1000 blob containers with hasLegalHold=true
+ * for a given account.
+ * @member {boolean} [hasImmutabilityPolicy] The hasImmutabilityPolicy public
+ * property is set to true by SRP if ImmutabilityPolicy has been created for
+ * this container. The hasImmutabilityPolicy public property is set to false by
+ * SRP if ImmutabilityPolicy has not been created for this container.
+ */
+export interface ListContainerItem extends AzureEntityResource {
+  publicAccess?: string;
+  readonly lastModifiedTime?: Date;
+  readonly leaseStatus?: string;
+  readonly leaseState?: string;
+  readonly leaseDuration?: string;
+  metadata?: { [propertyName: string]: string };
+  readonly immutabilityPolicy?: ImmutabilityPolicyProperties;
+  readonly legalHold?: LegalHoldProperties;
+  readonly hasLegalHold?: boolean;
+  readonly hasImmutabilityPolicy?: boolean;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the ListContainerItems class.
+ * @constructor
+ * The list of blob containers.
+ *
+ * @member {array} [value] The list of blob containers.
+ */
+export interface ListContainerItems {
+  value?: ListContainerItem[];
+}
+
+/**
+ * @class
+ * Initializes a new instance of the CorsRule class.
+ * @constructor
+ * Specifies a CORS rule for the Blob service.
+ *
+ * @member {array} allowedOrigins Required if CorsRule element is present. A
+ * list of origin domains that will be allowed via CORS, or "*" to allow all
+ * domains
+ * @member {array} allowedMethods Required if CorsRule element is present. A
+ * list of HTTP methods that are allowed to be executed by the origin.
+ * @member {number} maxAgeInSeconds Required if CorsRule element is present.
+ * The number of seconds that the client/browser should cache a preflight
+ * response.
+ * @member {array} exposedHeaders Required if CorsRule element is present. A
+ * list of response headers to expose to CORS clients.
+ * @member {array} allowedHeaders Required if CorsRule element is present. A
+ * list of headers allowed to be part of the cross-origin request.
+ */
+export interface CorsRule {
+  allowedOrigins: string[];
+  allowedMethods: string[];
+  maxAgeInSeconds: number;
+  exposedHeaders: string[];
+  allowedHeaders: string[];
+}
+
+/**
+ * @class
+ * Initializes a new instance of the CorsRules class.
+ * @constructor
+ * Sets the CORS rules. You can include up to five CorsRule elements in the
+ * request.
+ *
+ * @member {array} [corsRules] The List of CORS rules. You can include up to
+ * five CorsRule elements in the request.
+ */
+export interface CorsRules {
+  corsRules?: CorsRule[];
+}
+
+/**
+ * @class
+ * Initializes a new instance of the DeleteRetentionPolicy class.
+ * @constructor
+ * The blob service properties for soft delete.
+ *
+ * @member {boolean} [enabled] Indicates whether DeleteRetentionPolicy is
+ * enabled for the Blob service.
+ * @member {number} [days] Indicates the number of days that the deleted blob
+ * should be retained. The minimum specified value can be 1 and the maximum
+ * value can be 365.
+ */
+export interface DeleteRetentionPolicy {
+  enabled?: boolean;
+  days?: number;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the BlobServiceProperties class.
+ * @constructor
+ * The properties of a storage account’s Blob service.
+ *
+ * @member {object} [cors] Specifies CORS rules for the Blob service. You can
+ * include up to five CorsRule elements in the request. If no CorsRule elements
+ * are included in the request body, all CORS rules will be deleted, and CORS
+ * will be disabled for the Blob service.
+ * @member {array} [cors.corsRules] The List of CORS rules. You can include up
+ * to five CorsRule elements in the request.
+ * @member {string} [defaultServiceVersion] DefaultServiceVersion indicates the
+ * default version to use for requests to the Blob service if an incoming
+ * request’s version is not specified. Possible values include version
+ * 2008-10-27 and all more recent versions.
+ * @member {object} [deleteRetentionPolicy] The blob service properties for
+ * soft delete.
+ * @member {boolean} [deleteRetentionPolicy.enabled] Indicates whether
+ * DeleteRetentionPolicy is enabled for the Blob service.
+ * @member {number} [deleteRetentionPolicy.days] Indicates the number of days
+ * that the deleted blob should be retained. The minimum specified value can be
+ * 1 and the maximum value can be 365.
+ */
+export interface BlobServiceProperties extends Resource {
+  cors?: CorsRules;
+  defaultServiceVersion?: string;
+  deleteRetentionPolicy?: DeleteRetentionPolicy;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the StorageAccountManagementPolicies class.
+ * @constructor
+ * The Get Storage Account ManagementPolicies operation response.
+ *
+ * @member {object} [policy] The Storage Account ManagementPolicies Rules, in
+ * JSON format. See more details in:
+ * https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+ * @member {date} [lastModifiedTime] Returns the date and time the
+ * ManagementPolicies was last modified.
+ */
+export interface StorageAccountManagementPolicies extends Resource {
+  policy?: any;
+  readonly lastModifiedTime?: Date;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the ManagementPoliciesRulesSetParameter class.
+ * @constructor
+ * The Storage Account ManagementPolicies Rules, in JSON format. See more
+ * details in:
+ * https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+ *
+ * @member {object} [policy] The Storage Account ManagementPolicies Rules, in
+ * JSON format. See more details in:
+ * https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+ */
+export interface ManagementPoliciesRulesSetParameter {
+  policy?: any;
 }
 
 

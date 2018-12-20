@@ -14,6 +14,954 @@ import * as models from '../models';
 
 /**
  * @class
+ * Domains
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the EventGridManagementClient.
+ */
+export interface Domains {
+
+
+    /**
+     * @summary Get a domain
+     *
+     * Get properties of a domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<Domain>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getWithHttpOperationResponse(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.Domain>>;
+
+    /**
+     * @summary Get a domain
+     *
+     * Get properties of a domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {Domain} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {Domain} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link Domain} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    get(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.Domain>;
+    get(resourceGroupName: string, domainName: string, callback: ServiceCallback<models.Domain>): void;
+    get(resourceGroupName: string, domainName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.Domain>): void;
+
+
+    /**
+     * @summary Create a domain
+     *
+     * Asynchronously creates a new domain with the specified parameters.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} domainInfo Domain information
+     *
+     * @param {string} [domainInfo.inputSchema] This determines the format that
+     * Event Grid should expect for incoming events published to the domain.
+     * Possible values include: 'EventGridSchema', 'CustomEventSchema',
+     * 'CloudEventV01Schema'
+     *
+     * @param {object} [domainInfo.inputSchemaMapping] Information about the
+     * InputSchemaMapping which specified the info about mapping event payload.
+     *
+     * @param {string} domainInfo.inputSchemaMapping.inputSchemaMappingType
+     * Polymorphic Discriminator
+     *
+     * @param {string} domainInfo.location Location of the resource
+     *
+     * @param {object} [domainInfo.tags] Tags of the resource
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<Domain>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    createOrUpdateWithHttpOperationResponse(resourceGroupName: string, domainName: string, domainInfo: models.Domain, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.Domain>>;
+
+    /**
+     * @summary Create a domain
+     *
+     * Asynchronously creates a new domain with the specified parameters.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} domainInfo Domain information
+     *
+     * @param {string} [domainInfo.inputSchema] This determines the format that
+     * Event Grid should expect for incoming events published to the domain.
+     * Possible values include: 'EventGridSchema', 'CustomEventSchema',
+     * 'CloudEventV01Schema'
+     *
+     * @param {object} [domainInfo.inputSchemaMapping] Information about the
+     * InputSchemaMapping which specified the info about mapping event payload.
+     *
+     * @param {string} domainInfo.inputSchemaMapping.inputSchemaMappingType
+     * Polymorphic Discriminator
+     *
+     * @param {string} domainInfo.location Location of the resource
+     *
+     * @param {object} [domainInfo.tags] Tags of the resource
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {Domain} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {Domain} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link Domain} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    createOrUpdate(resourceGroupName: string, domainName: string, domainInfo: models.Domain, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.Domain>;
+    createOrUpdate(resourceGroupName: string, domainName: string, domainInfo: models.Domain, callback: ServiceCallback<models.Domain>): void;
+    createOrUpdate(resourceGroupName: string, domainName: string, domainInfo: models.Domain, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.Domain>): void;
+
+
+    /**
+     * @summary Delete a domain
+     *
+     * Delete existing domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    deleteMethodWithHttpOperationResponse(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * @summary Delete a domain
+     *
+     * Delete existing domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    deleteMethod(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    deleteMethod(resourceGroupName: string, domainName: string, callback: ServiceCallback<void>): void;
+    deleteMethod(resourceGroupName: string, domainName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+
+
+    /**
+     * @summary Update a domain
+     *
+     * Asynchronously updates a domain with the specified parameters.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} domainUpdateParameters Domain update information
+     *
+     * @param {object} [domainUpdateParameters.tags] Tags of the domains resource
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<Domain>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    updateWithHttpOperationResponse(resourceGroupName: string, domainName: string, domainUpdateParameters: models.DomainUpdateParameters, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.Domain>>;
+
+    /**
+     * @summary Update a domain
+     *
+     * Asynchronously updates a domain with the specified parameters.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} domainUpdateParameters Domain update information
+     *
+     * @param {object} [domainUpdateParameters.tags] Tags of the domains resource
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {Domain} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {Domain} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link Domain} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    update(resourceGroupName: string, domainName: string, domainUpdateParameters: models.DomainUpdateParameters, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.Domain>;
+    update(resourceGroupName: string, domainName: string, domainUpdateParameters: models.DomainUpdateParameters, callback: ServiceCallback<models.Domain>): void;
+    update(resourceGroupName: string, domainName: string, domainUpdateParameters: models.DomainUpdateParameters, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.Domain>): void;
+
+
+    /**
+     * @summary List domains under an Azure subscription
+     *
+     * List all the domains under an Azure subscription
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<DomainsListResult>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listBySubscriptionWithHttpOperationResponse(options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.DomainsListResult>>;
+
+    /**
+     * @summary List domains under an Azure subscription
+     *
+     * List all the domains under an Azure subscription
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {DomainsListResult} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {DomainsListResult} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link DomainsListResult} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listBySubscription(options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.DomainsListResult>;
+    listBySubscription(callback: ServiceCallback<models.DomainsListResult>): void;
+    listBySubscription(options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.DomainsListResult>): void;
+
+
+    /**
+     * @summary List domains under a resource group
+     *
+     * List all the domains under a resource group
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<DomainsListResult>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.DomainsListResult>>;
+
+    /**
+     * @summary List domains under a resource group
+     *
+     * List all the domains under a resource group
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {DomainsListResult} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {DomainsListResult} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link DomainsListResult} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listByResourceGroup(resourceGroupName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.DomainsListResult>;
+    listByResourceGroup(resourceGroupName: string, callback: ServiceCallback<models.DomainsListResult>): void;
+    listByResourceGroup(resourceGroupName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.DomainsListResult>): void;
+
+
+    /**
+     * @summary List keys for a domain
+     *
+     * List the two keys used to publish to a domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<DomainSharedAccessKeys>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listSharedAccessKeysWithHttpOperationResponse(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.DomainSharedAccessKeys>>;
+
+    /**
+     * @summary List keys for a domain
+     *
+     * List the two keys used to publish to a domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {DomainSharedAccessKeys} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {DomainSharedAccessKeys} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link DomainSharedAccessKeys} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listSharedAccessKeys(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.DomainSharedAccessKeys>;
+    listSharedAccessKeys(resourceGroupName: string, domainName: string, callback: ServiceCallback<models.DomainSharedAccessKeys>): void;
+    listSharedAccessKeys(resourceGroupName: string, domainName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.DomainSharedAccessKeys>): void;
+
+
+    /**
+     * @summary Regenerate key for a domain
+     *
+     * Regenerate a shared access key for a domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} regenerateKeyRequest Request body to regenerate key
+     *
+     * @param {string} regenerateKeyRequest.keyName Key name to regenerate key1 or
+     * key2
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<DomainSharedAccessKeys>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    regenerateKeyWithHttpOperationResponse(resourceGroupName: string, domainName: string, regenerateKeyRequest: models.DomainRegenerateKeyRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.DomainSharedAccessKeys>>;
+
+    /**
+     * @summary Regenerate key for a domain
+     *
+     * Regenerate a shared access key for a domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} regenerateKeyRequest Request body to regenerate key
+     *
+     * @param {string} regenerateKeyRequest.keyName Key name to regenerate key1 or
+     * key2
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {DomainSharedAccessKeys} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {DomainSharedAccessKeys} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link DomainSharedAccessKeys} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    regenerateKey(resourceGroupName: string, domainName: string, regenerateKeyRequest: models.DomainRegenerateKeyRequest, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.DomainSharedAccessKeys>;
+    regenerateKey(resourceGroupName: string, domainName: string, regenerateKeyRequest: models.DomainRegenerateKeyRequest, callback: ServiceCallback<models.DomainSharedAccessKeys>): void;
+    regenerateKey(resourceGroupName: string, domainName: string, regenerateKeyRequest: models.DomainRegenerateKeyRequest, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.DomainSharedAccessKeys>): void;
+
+
+    /**
+     * @summary Create a domain
+     *
+     * Asynchronously creates a new domain with the specified parameters.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} domainInfo Domain information
+     *
+     * @param {string} [domainInfo.inputSchema] This determines the format that
+     * Event Grid should expect for incoming events published to the domain.
+     * Possible values include: 'EventGridSchema', 'CustomEventSchema',
+     * 'CloudEventV01Schema'
+     *
+     * @param {object} [domainInfo.inputSchemaMapping] Information about the
+     * InputSchemaMapping which specified the info about mapping event payload.
+     *
+     * @param {string} domainInfo.inputSchemaMapping.inputSchemaMappingType
+     * Polymorphic Discriminator
+     *
+     * @param {string} domainInfo.location Location of the resource
+     *
+     * @param {object} [domainInfo.tags] Tags of the resource
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<Domain>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, domainName: string, domainInfo: models.Domain, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.Domain>>;
+
+    /**
+     * @summary Create a domain
+     *
+     * Asynchronously creates a new domain with the specified parameters.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} domainInfo Domain information
+     *
+     * @param {string} [domainInfo.inputSchema] This determines the format that
+     * Event Grid should expect for incoming events published to the domain.
+     * Possible values include: 'EventGridSchema', 'CustomEventSchema',
+     * 'CloudEventV01Schema'
+     *
+     * @param {object} [domainInfo.inputSchemaMapping] Information about the
+     * InputSchemaMapping which specified the info about mapping event payload.
+     *
+     * @param {string} domainInfo.inputSchemaMapping.inputSchemaMappingType
+     * Polymorphic Discriminator
+     *
+     * @param {string} domainInfo.location Location of the resource
+     *
+     * @param {object} [domainInfo.tags] Tags of the resource
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {Domain} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {Domain} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link Domain} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    beginCreateOrUpdate(resourceGroupName: string, domainName: string, domainInfo: models.Domain, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.Domain>;
+    beginCreateOrUpdate(resourceGroupName: string, domainName: string, domainInfo: models.Domain, callback: ServiceCallback<models.Domain>): void;
+    beginCreateOrUpdate(resourceGroupName: string, domainName: string, domainInfo: models.Domain, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.Domain>): void;
+
+
+    /**
+     * @summary Delete a domain
+     *
+     * Delete existing domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<null>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
+
+    /**
+     * @summary Delete a domain
+     *
+     * Delete existing domain
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {null} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {null} [result]   - The deserialized result object if an error did not occur.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    beginDeleteMethod(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<void>;
+    beginDeleteMethod(resourceGroupName: string, domainName: string, callback: ServiceCallback<void>): void;
+    beginDeleteMethod(resourceGroupName: string, domainName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<void>): void;
+
+
+    /**
+     * @summary Update a domain
+     *
+     * Asynchronously updates a domain with the specified parameters.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} domainUpdateParameters Domain update information
+     *
+     * @param {object} [domainUpdateParameters.tags] Tags of the domains resource
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<Domain>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    beginUpdateWithHttpOperationResponse(resourceGroupName: string, domainName: string, domainUpdateParameters: models.DomainUpdateParameters, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.Domain>>;
+
+    /**
+     * @summary Update a domain
+     *
+     * Asynchronously updates a domain with the specified parameters.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {object} domainUpdateParameters Domain update information
+     *
+     * @param {object} [domainUpdateParameters.tags] Tags of the domains resource
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {Domain} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {Domain} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link Domain} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    beginUpdate(resourceGroupName: string, domainName: string, domainUpdateParameters: models.DomainUpdateParameters, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.Domain>;
+    beginUpdate(resourceGroupName: string, domainName: string, domainUpdateParameters: models.DomainUpdateParameters, callback: ServiceCallback<models.Domain>): void;
+    beginUpdate(resourceGroupName: string, domainName: string, domainUpdateParameters: models.DomainUpdateParameters, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.Domain>): void;
+}
+
+/**
+ * @class
+ * DomainTopics
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the EventGridManagementClient.
+ */
+export interface DomainTopics {
+
+
+    /**
+     * @summary Get a domain topic
+     *
+     * Get properties of a domain topic
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {string} topicName Name of the topic
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<DomainTopic>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getWithHttpOperationResponse(resourceGroupName: string, domainName: string, topicName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.DomainTopic>>;
+
+    /**
+     * @summary Get a domain topic
+     *
+     * Get properties of a domain topic
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the domain
+     *
+     * @param {string} topicName Name of the topic
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {DomainTopic} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {DomainTopic} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link DomainTopic} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    get(resourceGroupName: string, domainName: string, topicName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.DomainTopic>;
+    get(resourceGroupName: string, domainName: string, topicName: string, callback: ServiceCallback<models.DomainTopic>): void;
+    get(resourceGroupName: string, domainName: string, topicName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.DomainTopic>): void;
+
+
+    /**
+     * @summary List domain topics.
+     *
+     * List all the topics in a domain.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Domain name.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<DomainTopicsListResult>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listByDomainWithHttpOperationResponse(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.DomainTopicsListResult>>;
+
+    /**
+     * @summary List domain topics.
+     *
+     * List all the topics in a domain.
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Domain name.
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {DomainTopicsListResult} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {DomainTopicsListResult} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link DomainTopicsListResult} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listByDomain(resourceGroupName: string, domainName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.DomainTopicsListResult>;
+    listByDomain(resourceGroupName: string, domainName: string, callback: ServiceCallback<models.DomainTopicsListResult>): void;
+    listByDomain(resourceGroupName: string, domainName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.DomainTopicsListResult>): void;
+}
+
+/**
+ * @class
  * EventSubscriptions
  * __NOTE__: An instance of this class is automatically created for an
  * instance of the EventGridManagementClient.
@@ -157,7 +1105,33 @@ export interface EventSubscriptions {
      * filter
      * should be compared in a case sensitive manner.
      *
+     * @param {array} [eventSubscriptionInfo.filter.advancedFilters] A list of
+     * advanced filters.
+     *
      * @param {array} [eventSubscriptionInfo.labels] List of user defined labels.
+     *
+     * @param {date} [eventSubscriptionInfo.expirationTimeUtc] Expiration time of
+     * the event subscription.
+     *
+     * @param {string} [eventSubscriptionInfo.eventDeliverySchema] The event
+     * delivery schema for the event subscription. Possible values include:
+     * 'EventGridSchema', 'CloudEventV01Schema', 'CustomInputSchema'
+     *
+     * @param {object} [eventSubscriptionInfo.retryPolicy] The retry policy for
+     * events. This can be used to configure maximum number of delivery attempts
+     * and time to live for events.
+     *
+     * @param {number} [eventSubscriptionInfo.retryPolicy.maxDeliveryAttempts]
+     * Maximum number of delivery retry attempts for events.
+     *
+     * @param {number} [eventSubscriptionInfo.retryPolicy.eventTimeToLiveInMinutes]
+     * Time To Live (in minutes) for events.
+     *
+     * @param {object} [eventSubscriptionInfo.deadLetterDestination] The DeadLetter
+     * destination of the event subscription.
+     *
+     * @param {string} eventSubscriptionInfo.deadLetterDestination.endpointType
+     * Polymorphic Discriminator
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -227,7 +1201,33 @@ export interface EventSubscriptions {
      * filter
      * should be compared in a case sensitive manner.
      *
+     * @param {array} [eventSubscriptionInfo.filter.advancedFilters] A list of
+     * advanced filters.
+     *
      * @param {array} [eventSubscriptionInfo.labels] List of user defined labels.
+     *
+     * @param {date} [eventSubscriptionInfo.expirationTimeUtc] Expiration time of
+     * the event subscription.
+     *
+     * @param {string} [eventSubscriptionInfo.eventDeliverySchema] The event
+     * delivery schema for the event subscription. Possible values include:
+     * 'EventGridSchema', 'CloudEventV01Schema', 'CustomInputSchema'
+     *
+     * @param {object} [eventSubscriptionInfo.retryPolicy] The retry policy for
+     * events. This can be used to configure maximum number of delivery attempts
+     * and time to live for events.
+     *
+     * @param {number} [eventSubscriptionInfo.retryPolicy.maxDeliveryAttempts]
+     * Maximum number of delivery retry attempts for events.
+     *
+     * @param {number} [eventSubscriptionInfo.retryPolicy.eventTimeToLiveInMinutes]
+     * Time To Live (in minutes) for events.
+     *
+     * @param {object} [eventSubscriptionInfo.deadLetterDestination] The DeadLetter
+     * destination of the event subscription.
+     *
+     * @param {string} eventSubscriptionInfo.deadLetterDestination.endpointType
+     * Polymorphic Discriminator
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -358,7 +1358,7 @@ export interface EventSubscriptions {
      * for an EventGrid topic.
      *
      * @param {string} eventSubscriptionName Name of the event subscription to be
-     * created
+     * updated
      *
      * @param {object} eventSubscriptionUpdateParameters Updated event subscription
      * information
@@ -395,8 +1395,37 @@ export interface EventSubscriptions {
      * if the SubjectBeginsWith and SubjectEndsWith properties of the filter
      * should be compared in a case sensitive manner.
      *
+     * @param {array} [eventSubscriptionUpdateParameters.filter.advancedFilters] A
+     * list of advanced filters.
+     *
      * @param {array} [eventSubscriptionUpdateParameters.labels] List of user
      * defined labels.
+     *
+     * @param {date} [eventSubscriptionUpdateParameters.expirationTimeUtc]
+     * Information about the expiration time for the event subscription.
+     *
+     * @param {string} [eventSubscriptionUpdateParameters.eventDeliverySchema] The
+     * event delivery schema for the event subscription. Possible values include:
+     * 'EventGridSchema', 'CloudEventV01Schema', 'CustomInputSchema'
+     *
+     * @param {object} [eventSubscriptionUpdateParameters.retryPolicy] The retry
+     * policy for events. This can be used to configure maximum number of delivery
+     * attempts and time to live for events.
+     *
+     * @param {number}
+     * [eventSubscriptionUpdateParameters.retryPolicy.maxDeliveryAttempts] Maximum
+     * number of delivery retry attempts for events.
+     *
+     * @param {number}
+     * [eventSubscriptionUpdateParameters.retryPolicy.eventTimeToLiveInMinutes]
+     * Time To Live (in minutes) for events.
+     *
+     * @param {object} [eventSubscriptionUpdateParameters.deadLetterDestination]
+     * The DeadLetter destination of the event subscription.
+     *
+     * @param {string}
+     * eventSubscriptionUpdateParameters.deadLetterDestination.endpointType
+     * Polymorphic Discriminator
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -428,7 +1457,7 @@ export interface EventSubscriptions {
      * for an EventGrid topic.
      *
      * @param {string} eventSubscriptionName Name of the event subscription to be
-     * created
+     * updated
      *
      * @param {object} eventSubscriptionUpdateParameters Updated event subscription
      * information
@@ -465,8 +1494,37 @@ export interface EventSubscriptions {
      * if the SubjectBeginsWith and SubjectEndsWith properties of the filter
      * should be compared in a case sensitive manner.
      *
+     * @param {array} [eventSubscriptionUpdateParameters.filter.advancedFilters] A
+     * list of advanced filters.
+     *
      * @param {array} [eventSubscriptionUpdateParameters.labels] List of user
      * defined labels.
+     *
+     * @param {date} [eventSubscriptionUpdateParameters.expirationTimeUtc]
+     * Information about the expiration time for the event subscription.
+     *
+     * @param {string} [eventSubscriptionUpdateParameters.eventDeliverySchema] The
+     * event delivery schema for the event subscription. Possible values include:
+     * 'EventGridSchema', 'CloudEventV01Schema', 'CustomInputSchema'
+     *
+     * @param {object} [eventSubscriptionUpdateParameters.retryPolicy] The retry
+     * policy for events. This can be used to configure maximum number of delivery
+     * attempts and time to live for events.
+     *
+     * @param {number}
+     * [eventSubscriptionUpdateParameters.retryPolicy.maxDeliveryAttempts] Maximum
+     * number of delivery retry attempts for events.
+     *
+     * @param {number}
+     * [eventSubscriptionUpdateParameters.retryPolicy.eventTimeToLiveInMinutes]
+     * Time To Live (in minutes) for events.
+     *
+     * @param {object} [eventSubscriptionUpdateParameters.deadLetterDestination]
+     * The DeadLetter destination of the event subscription.
+     *
+     * @param {string}
+     * eventSubscriptionUpdateParameters.deadLetterDestination.endpointType
+     * Polymorphic Discriminator
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1189,6 +2247,78 @@ export interface EventSubscriptions {
 
 
     /**
+     * @summary List all event subscriptions for a specific domain topic
+     *
+     * List all event subscriptions that have been created for a specific domain
+     * topic
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the top level domain
+     *
+     * @param {string} topicName Name of the domain topic
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<EventSubscriptionsListResult>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    listByDomainTopicWithHttpOperationResponse(resourceGroupName: string, domainName: string, topicName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.EventSubscriptionsListResult>>;
+
+    /**
+     * @summary List all event subscriptions for a specific domain topic
+     *
+     * List all event subscriptions that have been created for a specific domain
+     * topic
+     *
+     * @param {string} resourceGroupName The name of the resource group within the
+     * user's subscription.
+     *
+     * @param {string} domainName Name of the top level domain
+     *
+     * @param {string} topicName Name of the domain topic
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {EventSubscriptionsListResult} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {EventSubscriptionsListResult} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link EventSubscriptionsListResult} for more
+     *                      information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    listByDomainTopic(resourceGroupName: string, domainName: string, topicName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.EventSubscriptionsListResult>;
+    listByDomainTopic(resourceGroupName: string, domainName: string, topicName: string, callback: ServiceCallback<models.EventSubscriptionsListResult>): void;
+    listByDomainTopic(resourceGroupName: string, domainName: string, topicName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.EventSubscriptionsListResult>): void;
+
+
+    /**
      * @summary Create or update an event subscription
      *
      * Asynchronously creates a new event subscription or updates an existing event
@@ -1243,7 +2373,33 @@ export interface EventSubscriptions {
      * filter
      * should be compared in a case sensitive manner.
      *
+     * @param {array} [eventSubscriptionInfo.filter.advancedFilters] A list of
+     * advanced filters.
+     *
      * @param {array} [eventSubscriptionInfo.labels] List of user defined labels.
+     *
+     * @param {date} [eventSubscriptionInfo.expirationTimeUtc] Expiration time of
+     * the event subscription.
+     *
+     * @param {string} [eventSubscriptionInfo.eventDeliverySchema] The event
+     * delivery schema for the event subscription. Possible values include:
+     * 'EventGridSchema', 'CloudEventV01Schema', 'CustomInputSchema'
+     *
+     * @param {object} [eventSubscriptionInfo.retryPolicy] The retry policy for
+     * events. This can be used to configure maximum number of delivery attempts
+     * and time to live for events.
+     *
+     * @param {number} [eventSubscriptionInfo.retryPolicy.maxDeliveryAttempts]
+     * Maximum number of delivery retry attempts for events.
+     *
+     * @param {number} [eventSubscriptionInfo.retryPolicy.eventTimeToLiveInMinutes]
+     * Time To Live (in minutes) for events.
+     *
+     * @param {object} [eventSubscriptionInfo.deadLetterDestination] The DeadLetter
+     * destination of the event subscription.
+     *
+     * @param {string} eventSubscriptionInfo.deadLetterDestination.endpointType
+     * Polymorphic Discriminator
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1313,7 +2469,33 @@ export interface EventSubscriptions {
      * filter
      * should be compared in a case sensitive manner.
      *
+     * @param {array} [eventSubscriptionInfo.filter.advancedFilters] A list of
+     * advanced filters.
+     *
      * @param {array} [eventSubscriptionInfo.labels] List of user defined labels.
+     *
+     * @param {date} [eventSubscriptionInfo.expirationTimeUtc] Expiration time of
+     * the event subscription.
+     *
+     * @param {string} [eventSubscriptionInfo.eventDeliverySchema] The event
+     * delivery schema for the event subscription. Possible values include:
+     * 'EventGridSchema', 'CloudEventV01Schema', 'CustomInputSchema'
+     *
+     * @param {object} [eventSubscriptionInfo.retryPolicy] The retry policy for
+     * events. This can be used to configure maximum number of delivery attempts
+     * and time to live for events.
+     *
+     * @param {number} [eventSubscriptionInfo.retryPolicy.maxDeliveryAttempts]
+     * Maximum number of delivery retry attempts for events.
+     *
+     * @param {number} [eventSubscriptionInfo.retryPolicy.eventTimeToLiveInMinutes]
+     * Time To Live (in minutes) for events.
+     *
+     * @param {object} [eventSubscriptionInfo.deadLetterDestination] The DeadLetter
+     * destination of the event subscription.
+     *
+     * @param {string} eventSubscriptionInfo.deadLetterDestination.endpointType
+     * Polymorphic Discriminator
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1444,7 +2626,7 @@ export interface EventSubscriptions {
      * for an EventGrid topic.
      *
      * @param {string} eventSubscriptionName Name of the event subscription to be
-     * created
+     * updated
      *
      * @param {object} eventSubscriptionUpdateParameters Updated event subscription
      * information
@@ -1481,8 +2663,37 @@ export interface EventSubscriptions {
      * if the SubjectBeginsWith and SubjectEndsWith properties of the filter
      * should be compared in a case sensitive manner.
      *
+     * @param {array} [eventSubscriptionUpdateParameters.filter.advancedFilters] A
+     * list of advanced filters.
+     *
      * @param {array} [eventSubscriptionUpdateParameters.labels] List of user
      * defined labels.
+     *
+     * @param {date} [eventSubscriptionUpdateParameters.expirationTimeUtc]
+     * Information about the expiration time for the event subscription.
+     *
+     * @param {string} [eventSubscriptionUpdateParameters.eventDeliverySchema] The
+     * event delivery schema for the event subscription. Possible values include:
+     * 'EventGridSchema', 'CloudEventV01Schema', 'CustomInputSchema'
+     *
+     * @param {object} [eventSubscriptionUpdateParameters.retryPolicy] The retry
+     * policy for events. This can be used to configure maximum number of delivery
+     * attempts and time to live for events.
+     *
+     * @param {number}
+     * [eventSubscriptionUpdateParameters.retryPolicy.maxDeliveryAttempts] Maximum
+     * number of delivery retry attempts for events.
+     *
+     * @param {number}
+     * [eventSubscriptionUpdateParameters.retryPolicy.eventTimeToLiveInMinutes]
+     * Time To Live (in minutes) for events.
+     *
+     * @param {object} [eventSubscriptionUpdateParameters.deadLetterDestination]
+     * The DeadLetter destination of the event subscription.
+     *
+     * @param {string}
+     * eventSubscriptionUpdateParameters.deadLetterDestination.endpointType
+     * Polymorphic Discriminator
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1514,7 +2725,7 @@ export interface EventSubscriptions {
      * for an EventGrid topic.
      *
      * @param {string} eventSubscriptionName Name of the event subscription to be
-     * created
+     * updated
      *
      * @param {object} eventSubscriptionUpdateParameters Updated event subscription
      * information
@@ -1551,8 +2762,37 @@ export interface EventSubscriptions {
      * if the SubjectBeginsWith and SubjectEndsWith properties of the filter
      * should be compared in a case sensitive manner.
      *
+     * @param {array} [eventSubscriptionUpdateParameters.filter.advancedFilters] A
+     * list of advanced filters.
+     *
      * @param {array} [eventSubscriptionUpdateParameters.labels] List of user
      * defined labels.
+     *
+     * @param {date} [eventSubscriptionUpdateParameters.expirationTimeUtc]
+     * Information about the expiration time for the event subscription.
+     *
+     * @param {string} [eventSubscriptionUpdateParameters.eventDeliverySchema] The
+     * event delivery schema for the event subscription. Possible values include:
+     * 'EventGridSchema', 'CloudEventV01Schema', 'CustomInputSchema'
+     *
+     * @param {object} [eventSubscriptionUpdateParameters.retryPolicy] The retry
+     * policy for events. This can be used to configure maximum number of delivery
+     * attempts and time to live for events.
+     *
+     * @param {number}
+     * [eventSubscriptionUpdateParameters.retryPolicy.maxDeliveryAttempts] Maximum
+     * number of delivery retry attempts for events.
+     *
+     * @param {number}
+     * [eventSubscriptionUpdateParameters.retryPolicy.eventTimeToLiveInMinutes]
+     * Time To Live (in minutes) for events.
+     *
+     * @param {object} [eventSubscriptionUpdateParameters.deadLetterDestination]
+     * The DeadLetter destination of the event subscription.
+     *
+     * @param {string}
+     * eventSubscriptionUpdateParameters.deadLetterDestination.endpointType
+     * Polymorphic Discriminator
      *
      * @param {object} [options] Optional Parameters.
      *
@@ -1738,6 +2978,19 @@ export interface Topics {
      *
      * @param {object} topicInfo Topic information
      *
+     * @param {string} [topicInfo.inputSchema] This determines the format that
+     * Event Grid should expect for incoming events published to the topic.
+     * Possible values include: 'EventGridSchema', 'CustomEventSchema',
+     * 'CloudEventV01Schema'
+     *
+     * @param {object} [topicInfo.inputSchemaMapping] This enables publishing using
+     * custom event schemas. An InputSchemaMapping can be specified to map various
+     * properties of a source schema to various required properties of the
+     * EventGridEvent schema.
+     *
+     * @param {string} topicInfo.inputSchemaMapping.inputSchemaMappingType
+     * Polymorphic Discriminator
+     *
      * @param {string} topicInfo.location Location of the resource
      *
      * @param {object} [topicInfo.tags] Tags of the resource
@@ -1766,6 +3019,19 @@ export interface Topics {
      * @param {string} topicName Name of the topic
      *
      * @param {object} topicInfo Topic information
+     *
+     * @param {string} [topicInfo.inputSchema] This determines the format that
+     * Event Grid should expect for incoming events published to the topic.
+     * Possible values include: 'EventGridSchema', 'CustomEventSchema',
+     * 'CloudEventV01Schema'
+     *
+     * @param {object} [topicInfo.inputSchemaMapping] This enables publishing using
+     * custom event schemas. An InputSchemaMapping can be specified to map various
+     * properties of a source schema to various required properties of the
+     * EventGridEvent schema.
+     *
+     * @param {string} topicInfo.inputSchemaMapping.inputSchemaMappingType
+     * Polymorphic Discriminator
      *
      * @param {string} topicInfo.location Location of the resource
      *
@@ -2281,6 +3547,19 @@ export interface Topics {
      *
      * @param {object} topicInfo Topic information
      *
+     * @param {string} [topicInfo.inputSchema] This determines the format that
+     * Event Grid should expect for incoming events published to the topic.
+     * Possible values include: 'EventGridSchema', 'CustomEventSchema',
+     * 'CloudEventV01Schema'
+     *
+     * @param {object} [topicInfo.inputSchemaMapping] This enables publishing using
+     * custom event schemas. An InputSchemaMapping can be specified to map various
+     * properties of a source schema to various required properties of the
+     * EventGridEvent schema.
+     *
+     * @param {string} topicInfo.inputSchemaMapping.inputSchemaMappingType
+     * Polymorphic Discriminator
+     *
      * @param {string} topicInfo.location Location of the resource
      *
      * @param {object} [topicInfo.tags] Tags of the resource
@@ -2309,6 +3588,19 @@ export interface Topics {
      * @param {string} topicName Name of the topic
      *
      * @param {object} topicInfo Topic information
+     *
+     * @param {string} [topicInfo.inputSchema] This determines the format that
+     * Event Grid should expect for incoming events published to the topic.
+     * Possible values include: 'EventGridSchema', 'CustomEventSchema',
+     * 'CloudEventV01Schema'
+     *
+     * @param {object} [topicInfo.inputSchemaMapping] This enables publishing using
+     * custom event schemas. An InputSchemaMapping can be specified to map various
+     * properties of a source schema to various required properties of the
+     * EventGridEvent schema.
+     *
+     * @param {string} topicInfo.inputSchemaMapping.inputSchemaMappingType
+     * Polymorphic Discriminator
      *
      * @param {string} topicInfo.location Location of the resource
      *

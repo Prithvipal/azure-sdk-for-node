@@ -18,7 +18,7 @@
 const CognitiveServicesCredentials = require('ms-rest-azure').CognitiveServicesCredentials;
 
 const SuiteBase = require('../../framework/suite-base');
-const SpellCheckAPIClient = require('../../../lib/services/spellCheck/lib/spellCheckAPIClient');
+const SpellCheckClient = require('../../../lib/services/spellCheck/lib/spellCheckClient');
 const assert = require('assert');
 
 var requiredEnvironment = [
@@ -35,7 +35,7 @@ describe('Spell Check', () => {
     suite = new SuiteBase(this, testPrefix, requiredEnvironment);
     suite.setupSuite(() => {
       credentials = new CognitiveServicesCredentials(process.env["AZURE_SPELL_CHECK_KEY"]);
-      client = new SpellCheckAPIClient(credentials);
+      client = new SpellCheckClient(credentials);
       done();
     });
   });
@@ -54,10 +54,7 @@ describe('Spell Check', () => {
 
   describe('Spell Checker.', () => {
     it('should correct spelling', (done) => {
-      let options = {
-          text: 'cognituve services'
-      };
-      client.spellChecker(options, (err, result, request, response) => {
+      client.spellChecker('cognituve services', (err, result, request, response) => {
         if (err) done(err);
         assert.equal(result.flaggedTokens[0].token, "cognituve");
         assert.equal(result.flaggedTokens[0].suggestions[0].suggestion, "cognitive");

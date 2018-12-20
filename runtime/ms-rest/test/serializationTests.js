@@ -5,6 +5,7 @@ var assert = require('assert');
 var should = require('should');
 var moment = require('moment');
 var msRest = require('../lib/msRest');
+var getPropertyValue = require('../lib/serialization').getPropertyValue;
 var testClient = require('./data/TestClient/lib/testClient');
 
 var tokenCredentials = new msRest.TokenCredentials('dummy');
@@ -26,7 +27,7 @@ describe('msrest', function () {
     });
 
     it('should correctly serialize a Buffer Object', function (done) {
-      var bufferObj = new Buffer('Javascript');
+      var bufferObj = Buffer.from('Javascript');
       var base64str = 'SmF2YXNjcmlwdA==';
       msRest.serializeObject(bufferObj).should.equal(base64str);
       done();
@@ -52,11 +53,11 @@ describe('msrest', function () {
       var o1 = {
         'p1': 'value1',
         'p2': 'value2',
-        'top-buf': new Buffer('top string', 'utf-8'),
+        'top-buf': Buffer.from('top string', 'utf-8'),
         'top-date': new Date('2014'),
         'top-dates': [new Date('1900'), new Date('1901')],
         'insider': {
-          'insider-buf': new Buffer('insider string', 'utf-8'),
+          'insider-buf': Buffer.from('insider string', 'utf-8'),
           'insider-date': new Date('2015'),
           'insider-dates': [new Date('2100'), new Date('2101')],
           'insider-dictionary': {
@@ -71,7 +72,7 @@ describe('msrest', function () {
             'male': true,
             'birthday': '1992-01-01T00:00:00.000Z',
             'anniversary': new Date('2013-12-08'),
-            'memory': new Buffer('Yadadadada')
+            'memory': Buffer.from('Yadadadada')
           }
         }
       };
@@ -187,7 +188,7 @@ describe('msrest', function () {
     });
     it('should correctly serialize a Buffer Object', function (done) {
       mapper = { type: { name: 'ByteArray' } };
-      var bufferObj = new Buffer('Javascript');
+      var bufferObj = Buffer.from('Javascript');
       var base64str = 'SmF2YXNjcmlwdA==';
       var serializedObject = msRest.serialize(mapper, bufferObj, 'stringBody');
       serializedObject.should.equal(base64str);
@@ -476,7 +477,7 @@ describe('msrest', function () {
         'birthday': new Date('2012-01-05T01:00:00Z'),
         'species': 'king',
         'length': 1.0,
-        'picture': new Buffer([255, 255, 255, 255, 254]),
+        'picture': Buffer.from([255, 255, 255, 255, 254]),
         'siblings': [
           {
             'fishtype': 'shark',
@@ -490,7 +491,7 @@ describe('msrest', function () {
             'age': 105,
             'birthday': new Date('1900-01-05T01:00:00Z'),
             'length': 10.0,
-            'picture': new Buffer([255, 255, 255, 255, 254]),
+            'picture': Buffer.from([255, 255, 255, 255, 254]),
             'species': 'dangerous'
           }
         ]
@@ -580,6 +581,198 @@ describe('msrest', function () {
       result.name.should.equal('Funny');
       result.birthdate.should.equal('2017-12-13T02:29:51.000Z');
       done();
+    });
+
+    it("should allow null when required: true and nullable: true", function() {
+      const mapper = {
+        required: false,
+        serializedName: 'testmodel',
+        type: {
+          name: 'Composite',
+          className: 'testmodel',
+          modelProperties: {
+            length: {
+              required: true,
+              nullable: true,
+              serializedName: 'length',
+              type: {
+                name: 'Number'
+              }
+            }
+          }
+        }
+      };
+
+      const result = msRest.serialize(mapper, { length: null }, "testobj");
+      should.exist(result);
+    });
+
+    it("should not allow undefined when required: true and nullable: true", function() {
+      const mapper = {
+        required: false,
+        serializedName: 'testmodel',
+        type: {
+          name: 'Composite',
+          className: 'testmodel',
+          modelProperties: {
+            length: {
+              required: true,
+              nullable: true,
+              serializedName: 'length',
+              type: {
+                name: 'Number'
+              }
+            }
+          }
+        }
+      };
+
+      (function () { msRest.serialize(mapper, { length: undefined }, "testobj"); }).should.throw("testobj.length cannot be undefined.");
+    });
+
+    it("should not allow null when required: true and nullable: false", function() {
+      const mapper = {
+        required: false,
+        serializedName: 'testmodel',
+        type: {
+          name: 'Composite',
+          className: 'testmodel',
+          modelProperties: {
+            length: {
+              required: true,
+              nullable: false,
+              serializedName: 'length',
+              type: {
+                name: 'Number'
+              }
+            }
+          }
+        }
+      };
+
+      (function () { msRest.serialize(mapper, { length: null }, "testobj"); }).should.throw("testobj.length cannot be null or undefined.");
+    });
+
+    it("should not allow undefined when required: true and nullable: false", function() {
+      const mapper = {
+        required: false,
+        serializedName: 'testmodel',
+        type: {
+          name: 'Composite',
+          className: 'testmodel',
+          modelProperties: {
+            length: {
+              required: true,
+              nullable: false,
+              serializedName: 'length',
+              type: {
+                name: 'Number'
+              }
+            }
+          }
+        }
+      };
+
+      (function () { msRest.serialize(mapper, { length: undefined }, "testobj"); }).should.throw("testobj.length cannot be null or undefined.");
+    });
+
+    it("should not allow null when required: true and nullable is undefined", function() {
+      const mapper = {
+        required: true,
+        type: {
+          name: "String"
+        }
+      };
+      (function () { msRest.serialize(mapper, null, "testobj"); }).should.throw("testobj cannot be null or undefined.");
+    });
+
+    it("should not allow undefined when required: true and nullable is undefined", function() {
+      const mapper = {
+        required: true,
+        type: {
+          name: "String"
+        }
+      };
+      (function () { msRest.serialize(mapper, undefined, "testobj"); }).should.throw("testobj cannot be null or undefined.");
+    });
+
+    it("should allow null when required: false and nullable: true", function() {
+      const mapper = {
+        required: false,
+        nullable: true,
+        type: {
+          name: "String"
+        }
+      };
+
+      msRest.serialize(mapper, null, "testobj");
+    });
+
+    it("should not allow null when required: false and nullable: false", function() {
+      const mapper = {
+        required: false,
+        nullable: false,
+        type: {
+          name: "String"
+        }
+      };
+      (function () { msRest.serialize(mapper, null, "testobj"); }).should.throw("testobj cannot be null.");
+    });
+
+    it("should allow null when required: false and nullable is undefined", function() {
+      const mapper = {
+        required: false,
+        type: {
+          name: "String"
+        }
+      };
+
+      msRest.serialize(mapper, null, "testobj");
+    });
+
+    it("should allow undefined when required: false and nullable: true", function() {
+      const mapper = {
+        required: false,
+        nullable: true,
+        type: {
+          name: "String"
+        }
+      };
+
+      msRest.serialize(mapper, undefined, "testobj");
+    });
+
+    it("should allow undefined when required: false and nullable: false", function() {
+      const mapper = {
+        serializedName: "fooType",
+        type: {
+          name: "Composite",
+          className: "fooType",
+          modelProperties: {
+            length: {
+              serializedName: "length",
+              required: false,
+              nullable: false,
+              type: {
+                name: "String"
+              }
+            }
+          }
+        }
+      };
+
+      msRest.serialize(mapper, { length: undefined }, "testobj");
+    });
+
+    it("should allow undefined when required: false and nullable is undefined", function() {
+      const mapper = {
+        required: false,
+        type: {
+          name: "String"
+        }
+      };
+
+      msRest.serialize(mapper, undefined, "testobj");
     });
   });
 
@@ -770,7 +963,7 @@ describe('msrest', function () {
         'birthday': new Date('2012-01-05T01:00:00Z').toISOString(),
         'species': 'king',
         'length': 1.0,
-        'picture': new Buffer([255, 255, 255, 255, 254]).toString(),
+        'picture': Buffer.from([255, 255, 255, 255, 254]).toString(),
         'siblings': [
           {
             'fish.type': 'shark',
@@ -784,7 +977,7 @@ describe('msrest', function () {
             'age': 105,
             'birthday': new Date('1900-01-05T01:00:00Z').toISOString(),
             'length': 10.0,
-            'picture': new Buffer([255, 255, 255, 255, 254]).toString(),
+            'picture': Buffer.from([255, 255, 255, 255, 254]).toString(),
             'species': 'dangerous'
           }
         ]
@@ -871,14 +1064,14 @@ describe('msrest', function () {
         'birthday': new Date('2012-01-05T01:00:00Z').toISOString(),
         'species': 'king',
         'length': 1.0,
-        'picture': new Buffer([255, 255, 255, 255, 254]).toString(),
+        'picture': Buffer.from([255, 255, 255, 255, 254]).toString(),
         'siblings': [
           {
             'fish.type': 'mutatedshark',
             'age': 105,
             'birthday': new Date('1900-01-05T01:00:00Z').toISOString(),
             'length': 10.0,
-            'picture': new Buffer([255, 255, 255, 255, 254]).toString(),
+            'picture': Buffer.from([255, 255, 255, 255, 254]).toString(),
             'species': 'dangerous',
             'siblings': [
               {
@@ -947,14 +1140,14 @@ describe('msrest', function () {
         'birthday': new Date('2012-01-05T01:00:00Z').toISOString(),
         'species': 'king',
         'length': 1.0,
-        'picture': new Buffer([255, 255, 255, 255, 254]).toString(),
+        'picture': Buffer.from([255, 255, 255, 255, 254]).toString(),
         'siblings': [
           {
             'fish.type': 'mutatedshark',
             'age': 105,
             'birthday': new Date('1900-01-05T01:00:00Z').toISOString(),
             'length': 10.0,
-            'picture': new Buffer([255, 255, 255, 255, 254]).toString(),
+            'picture': Buffer.from([255, 255, 255, 255, 254]).toString(),
             'species': 'dangerous',
             'siblings': [
               {
@@ -989,7 +1182,7 @@ describe('msrest', function () {
         'birthday': new Date('2012-01-05T01:00:00Z'),
         'species': 'king',
         'length': 1.0,
-        'picture': new Buffer([255, 255, 255, 255, 254]),
+        'picture': Buffer.from([255, 255, 255, 255, 254]),
         'siblings': [
           {
             'fishtype': 'shark',
@@ -1003,7 +1196,7 @@ describe('msrest', function () {
             'age': 105,
             'birthday': new Date('1900-01-05T01:00:00Z'),
             'length': 10.0,
-            'picture': new Buffer([255, 255, 255, 255, 254]),
+            'picture': Buffer.from([255, 255, 255, 255, 254]),
             'species': 'dangerous'
           }
         ]
@@ -1021,6 +1214,56 @@ describe('msrest', function () {
       serializedSawshark.siblings[1].picture.should.equal('//////4=');
       serializedSawshark.picture.should.equal('//////4=');
       done();
+    });
+  });
+
+  describe('getPropertyValue', function () {
+    it('should return undefined when given an undefined value', function () {
+      assert.strictEqual(getPropertyValue(undefined, ["a"]), undefined);
+    });
+
+    it('should return undefined when given a null value', function () {
+      assert.strictEqual(getPropertyValue(null, ["a"]), undefined);
+    });
+
+    it('should return undefined when given undefined property path', function () {
+      assert.strictEqual(getPropertyValue("apples", undefined), undefined);
+    });
+
+    it('should return undefined when given null property path', function () {
+      assert.strictEqual(getPropertyValue("apples", null), undefined);
+    });
+
+    it('should return undefined when given empty property path', function () {
+      assert.strictEqual(getPropertyValue("apples", []), undefined);
+    });
+
+    it('should return undefined when given a property name that doesn\'t exist', function () {
+      assert.strictEqual(getPropertyValue("apples", ["spam"]), undefined);
+    });
+
+    it('should return property value when given a property name that exists', function () {
+      assert.strictEqual(getPropertyValue({ "a": 6 }, ["a"]), 6);
+    });
+
+    it('should return property value when given a property name that exists with the wrong case', function () {
+      assert.strictEqual(getPropertyValue({ "a": 6 }, ["A"]), 6);
+    });
+
+    it('should return original value when given an empty property name', function () {
+      assert.strictEqual(getPropertyValue("apples", [""]), "apples");
+    });
+
+    it('should return undefined when part of the property path doesn\'t exist', function () {
+      assert.strictEqual(getPropertyValue({ "a": { "beta": { "c": 7 } } }, ["a", "b", "c"]), undefined);
+    });
+
+    it('should return property value when part of the property path is in the wrong case', function () {
+      assert.strictEqual(getPropertyValue({ "a": { "b": { "c": 7 } } }, ["A", "b", "C"]), 7);
+    });
+
+    it('should return null when the property value is null', function () {
+      assert.strictEqual(getPropertyValue({ "a": { "b": null } }, ["A", "b"]), null);
     });
   });
 });
